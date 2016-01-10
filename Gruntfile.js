@@ -1,17 +1,29 @@
 'use strict';
 
+var config = {
+  pkg:  require('./package.json'),
+  app: 'src',
+  dist: 'dist'
+};
+
+
 module.exports = function(grunt) {
+
 
   // Project configuration.
   grunt.initConfig({
     // Metadata.
-    pkg: grunt.file.readJSON('package.json'),
     banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
       ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
     // Task configuration.
+	config: config,
+	pkg: config.pkg,
+	bower: grunt.file.readJSON('./.bowerrc'),
+	
+	
     concat: {
       options: {
         banner: '<%= banner %>',
@@ -27,8 +39,14 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name %>.min.js'
+		files: {
+          '<%= config.dist %>/js/lib.min.js': [
+            '<%= bower.directory %>/jquery/dist/jquery.js',
+			'<%= bower.directory %>/createjs-collection/index.js',
+          ],
+		  '<%= concat.dist.dest %>': [ 
+		    'dist/<%= pkg.name %>.min.js']
+        }
       },
     },
     nodeunit: {
