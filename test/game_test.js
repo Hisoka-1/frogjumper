@@ -1,6 +1,6 @@
 'use strict';
 
-var game = require('../lib/game.js');
+var game = require('../src/game.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
