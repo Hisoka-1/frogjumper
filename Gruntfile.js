@@ -25,14 +25,15 @@ module.exports = function(grunt) {
 	
 	
     concat: {
-      options: {
-        banner: '<%= banner %>',
-        stripBanners: true
-      },
       dist: {
+		options: {
+			banner: '<%= banner %>',
+			stripBanners: true
+      },
         src: ['src/<%= pkg.name %>.js'],
         dest: 'dist/<%= pkg.name %>.js'
       },
+	htmldist: {src: 'src/<%= pkg.name %>.html', dest: 'dist/<%= pkg.name %>.html'}
     },
     uglify: {
       options: {
@@ -82,8 +83,9 @@ module.exports = function(grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       },
-	  distchanged: {
-        files: ['dist/*'],
+	  srcchanged: {
+        files: ['src/*'],
+		tasks: ['concat'],
         options:{
 			livereload:true
 		}

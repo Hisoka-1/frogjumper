@@ -1,8 +1,19 @@
 <html>
 <head>
-<script src="./js/lib.min.js"> </script>
 <script>
 function init() {
+	function Level(rows, columns, startposition, goalposition){
+		this.rows= rows;
+		this.columns= columns;
+		this.startposition= startposition;
+		this.goalposition= goalposition;
+	};
+	function Position(row, column){
+		this.row = row;
+		this.column = column;
+	}
+	var level1 = new Level(5, 1, new Position(1,1), new Position (5,1));
+	
 	var stage = new createjs.Stage('myCanvas');
 	var shape = new createjs.Shape();
 	createjs.Touch.enable(stage);
@@ -53,8 +64,6 @@ function jump(stage, figure, dim, stoneNumber){
 	var jumpHeight = dim.sixwidth();
 	tween.to({ x: posHalb, y: jumpHeight }, 750, createjs.Ease.getPowOut(1));
 	tween.to({ x: pos, y: dim.halfheight() -50 }, 750, createjs.Ease.getPowOut(2));
-	//tween.to({ y : jumpHeight }, 750, createjs.Ease.backIn());
-	//tween.to({ x: pos}, 750, createjs.Ease.backIn());
 };
 
 function spawn(stage, dim){
@@ -83,8 +92,9 @@ function drawTile(stage, posx, posy, color) {
 <script src="./js/lib.min.js"> </script>
 </head>
 <body onload = "init();">
-<h1>Hallo Spielexsr</h1>
+
 <canvas id="myCanvas" width="1366" height="768"></canvas>
+
 <script src="//localhost:35729/livereload.js"></script>
 </body>
 </html>
