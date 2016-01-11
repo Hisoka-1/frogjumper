@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     // Metadata.
-    banner: '/*! <%= pkg.name %> - v<%= m.version %> - ' +
+    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
@@ -89,6 +89,17 @@ module.exports = function(grunt) {
 		}
       }
     },
+	 connect: {
+      all: {
+        options:{
+          port: 9000,
+          hostname: "0.0.0.0",
+          // Prevents Grunt to close just after the task (starting the server) completes
+          // This will be removed later as `watch` will take care of that
+          keepalive: true
+        }
+      }
+    }
   });
 
   // These plugins provide necessary tasks.
@@ -97,8 +108,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-
+  grunt.registerTask('server',['connect']);
 };
