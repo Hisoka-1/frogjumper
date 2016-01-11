@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     // Metadata.
-    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
+    banner: '/*! <%= pkg.name %> - v<%= m.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
     jshint: {
       options: {
         jshintrc: '.jshintrc'
-      },
+      },                                                           
       gruntfile: {
         src: 'Gruntfile.js'
       },
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
     },
     watch: {
       gruntfile: {
-        files: '<%= jshint.gruntfile.src %>',
+        files: ['<%= jshint.gruntfile.src %>'],
         tasks: ['jshint:gruntfile']
       },
       lib: {
@@ -82,6 +82,12 @@ module.exports = function(grunt) {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'nodeunit']
       },
+	  distchanged: {
+        files: ['dist/*'],
+        options:{
+			livereload:true
+		}
+      }
     },
   });
 
