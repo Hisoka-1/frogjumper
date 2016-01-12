@@ -85,7 +85,7 @@ module.exports = function(grunt) {
       },
 	  srcchanged: {
         files: ['src/*'],
-		tasks: ['concat'],
+		tasks: ['concat', 'jshint'],
         options:{
 			livereload:true
 		}
@@ -95,10 +95,7 @@ module.exports = function(grunt) {
       all: {
         options:{
           port: 9000,
-          hostname: "0.0.0.0",
-          // Prevents Grunt to close just after the task (starting the server) completes
-          // This will be removed later as `watch` will take care of that
-          keepalive: true
+          hostname: "0.0.0.0"
         }
       }
     }
