@@ -114,5 +114,5 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'nodeunit', 'concat', 'uglify']);
-  grunt.registerTask('server',['connect']);
+  grunt.registerTask('server',['connect', 'watch']);
 };
