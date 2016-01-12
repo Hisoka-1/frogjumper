@@ -75,14 +75,6 @@ module.exports = function(grunt) {
         files: ['<%= jshint.gruntfile.src %>'],
         tasks: ['jshint:gruntfile']
       },
-      lib: {
-        files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
-      },
-      test: {
-        files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
-      },
 	  srcchanged: {
         files: ['src/*'],
 		tasks: ['concat', 'jshint'],
@@ -111,5 +103,5 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('server',['connect', 'watch']);
+  grunt.registerTask('server',['connect', 'watch', ]);
 };

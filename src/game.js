@@ -14,16 +14,14 @@ function Position(row, column){
 	this.column = column;
 }
 
-var init = function() {
-	function Level(rows, columns, startposition, goalposition){
-		this.rows= rows;
-		this.columns= columns;
-		this.startposition= startposition;
-		this.goalposition= goalposition;
-	}
+function Level(rows, columns, startposition, goalposition){
+	this.rows= rows;
+	this.columns= columns;
+	this.startposition= startposition;
+	this.goalposition= goalposition;
+}
 
-	
-	function getInvisible(tile){
+function getInvisible(tile){
 	var tween = createjs.Tween.get(tile, { override: true, loop: false }).wait(1000);
 	tween.to({ alpha:0 }, 500);
 }
@@ -38,7 +36,6 @@ function jump(stage, figure, dim, stoneNumber){
 }
 
 function spawn(stage, dim){
-
 	var circle = new createjs.Shape();
 	circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
 	circle.x = -50;
@@ -53,25 +50,28 @@ function spawn(stage, dim){
 	
 	return circle;
 }
-	
+
 function drawTile(stage, posx, posy, color) {
 	var shape = new createjs.Shape();
 	stage.addChild(shape).set({x:posx,y:posy}).graphics.f(color).dc(0,0,50);
 	return shape;
 }
 
-var level1 = new Level(5, 1, new Position(1,1), new Position (5,1));
+var init = function() {
+
+	var level1 = new Level(5, 1, new Position(1,1), new Position (5,1));
 	
 	var stage = new createjs.Stage('myCanvas');
 	var shape = new createjs.Shape();
 	createjs.Touch.enable(stage);
-	
-	 var dim = {
+
+	var dim = {
         width: $('#myCanvas').width(),//1366
         height: $('#myCanvas').height(),//768
 		halfheight : function () {return this.height/2;},
 	    sixwidth : function () {return this.width/6;}
     };
+	 
 	shape.graphics.beginFill('lightblue').drawRect(0, 0, dim.width, dim.height);
 	stage.addChild(shape);
 	
