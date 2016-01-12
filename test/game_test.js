@@ -1,6 +1,6 @@
 'use strict';
 
-var game = require('../src/game.js');
+//var game = require('../src/game.js');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -22,7 +22,7 @@ var game = require('../src/game.js');
     test.ifError(value)
 */
 
-exports['awesome'] = {
+/*exports['awesome'] = {
   setUp: function(done) {
     // setup here
     done();
@@ -34,3 +34,13 @@ exports['awesome'] = {
     test.done();
   }
 };
+*/
+
+/*exports.testPosition = function(test){
+	test.expect(1);
+	var X = game.Position;
+	var posasdf = new X(1,2);
+	test.equal(posasdf.row, 1, 'first param is x');
+	test.done();
+};
+*/

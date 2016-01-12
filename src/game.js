@@ -9,6 +9,10 @@
  /* globals $: false */
  /* globals createjs: false */
 
+function Position(row, column){
+	this.row = row;
+	this.column = column;
+}
 
 var init = function() {
 	function Level(rows, columns, startposition, goalposition){
@@ -17,10 +21,7 @@ var init = function() {
 		this.startposition= startposition;
 		this.goalposition= goalposition;
 	}
-	function Position(row, column){
-		this.row = row;
-		this.column = column;
-	}
+
 	
 	function getInvisible(tile){
 	var tween = createjs.Tween.get(tile, { override: true, loop: false }).wait(1000);
