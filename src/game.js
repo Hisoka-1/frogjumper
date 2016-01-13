@@ -11,18 +11,20 @@
 /* globals console: false */
 
 var stage;
+var frog;
 
 function Position(row, column) {
 	this.row = row;
 	this.column = column;
 }
 
-function Tile(x, y, color) {
+function Tile(x, y, color, pos) {
 	this.shape = new createjs.Shape();
 	this.x = x;
 	this.y = y;
 	this.color = color;
-	
+	this.pos = pos;
+	var that = this;
 	this.disappear = function () {
 		var tween = createjs.Tween.get(this.shape, {
 				override : true,
@@ -33,13 +35,22 @@ function Tile(x, y, color) {
 		}, 500);
 	};
 	this.draw = function() {
-		console.log(this.x);
+		console.log(x);
 		stage.addChild(this.shape).set({
 			x : this.x,
 			y : this.y
 		}).graphics.f(this.color).dc(0, 0, 50);
 	};
+	
 	//this.draw();
+	
+	this.init = function(){
+		this.shape.on("click", function (evt) {
+			frog.jump(that);
+		});
+	};
+	this.init();
+	
 }
 
 function Level(columns, rows, startposition, goalposition, dim, tiles) {
@@ -60,56 +71,52 @@ function Level(columns, rows, startposition, goalposition, dim, tiles) {
 		for (i = 0; i <this.rows; i++){
 			y [i] = (this.dim.height / (this.rows+1) * (i+1));
 		}
-		console.log(y);
-		console.log(startposition.column);
-		new Tile(x[startposition.row], y[startposition.column], "red").draw();
-		new Tile(x[goalposition.row], y[goalposition.column], "blue").draw();
+		frog.tile = new Tile(x[startposition.row], y[startposition.column], "red", startposition);
+		frog.tile.draw();
+		new Tile(x[goalposition.row], y[goalposition.column], "blue", goalposition).draw();
 		for (i = 0; i <this.tiles.length; i++){
 			var pos = this.tiles[i];
-			new Tile(x[pos.row], y[pos.column], "red").draw();
+			new Tile(x[pos.row], y[pos.column], "red", pos).draw();
 		}
 	};
-	this.drawAllTiles();
 	
-	function spawn(dim) {
-		var circle = new createjs.Shape();
-		circle.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-		circle.x = -50;
-		circle.y = dim.halfheight() - 50;
-		stage.addChild(circle);
+	
+	this.spawn = function() {
+		frog.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+		frog.x = -50;
+		frog.y = this.dim.halfheight() - 50;
+		stage.addChild(frog);
 		stage.update();
-		createjs.Tween.get(circle, {
+		createjs.Tween.get(frog, {
 			loop : false
 		}).wait(500)
 		.to({
-			x : dim.sixwidth()
+			x : this.dim.sixwidth()
 		}, 1000, createjs.Ease.getPowInOut(4));
 
 		createjs.Ticker.setFPS(60);
 		createjs.Ticker.addEventListener("tick", stage);
-		return circle;
-	}
+	};
+	frog = new createjs.Shape();
+	this.drawAllTiles();
+	this.spawn();
 	
-	this.frog = spawn(dim);
-}
-
-
-
-function jump(figure, dim, stoneNumber) {
-	var tween = createjs.Tween.get(figure, {
-			loop : false
-		}).wait(500);
-	var pos = (dim.sixwidth() * stoneNumber);
-	var posHalb = pos - dim.sixwidth() * (0.5);
-	var jumpHeight = dim.sixwidth();
-	tween.to({
-		x : posHalb,
-		y : jumpHeight
-	}, 750, createjs.Ease.getPowOut(1));
-	tween.to({
-		x : pos,
-		y : dim.halfheight() - 50
-	}, 750, createjs.Ease.getPowOut(2));
+	frog.jump = function(tile) {
+		var tween = createjs.Tween.get(frog, {
+				loop : false
+			}).wait(500);
+		tween.to({
+			x : (tile.x-frog.x)/2 + frog.x,
+			y : tile.y - 100
+		}, 750, createjs.Ease.getPowOut(1));
+		tween.to({
+			x : tile.x,
+			y : tile.y - 50
+		}, 750, createjs.Ease.getPowOut(2));
+		frog.tile.disappear();
+		frog.tile = tile;
+	};
+	
 }
 
 var init = function () {
@@ -137,30 +144,4 @@ var init = function () {
 		new Position(2, 0),
 		new Position(3, 0)
 	]);
-
-	var halfheight = dim.halfheight();
-	var sixwidth = dim.sixwidth();
-	var figure;
-	var tile1 = new Tile(sixwidth, halfheight, "red");
-	var tile2 = new Tile(sixwidth * 2, halfheight, "red");
-	tile2.shape.on("click", function (evt) {
-		jump(figure, dim, 2);
-		tile1.disappear();
-	});
-	var tile3 = new Tile(sixwidth * 3, halfheight, "red");
-	tile3.shape.on("click", function (evt) {
-		jump(figure, dim, 3);
-		tile2.disappear();
-	});
-	var tile4 = new Tile( sixwidth * 4, halfheight, "red");
-	tile4.shape.on("click", function (evt) {
-		jump(figure, dim, 4);
-		tile3.disappear();
-	});
-	var tile5 = new Tile(sixwidth * 5, halfheight, "blue");
-	tile5.shape.on("click", function (evt) {
-		jump(figure, dim, 5);
-		tile4.disappear();
-	});
-
 };
