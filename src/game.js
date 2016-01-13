@@ -33,6 +33,7 @@ function Tile(x, y, color, pos) {
 		tween.to({
 			alpha : 0
 		}, 500);
+		return tween;
 	};
 	this.draw = function() {
 		console.log(x);
@@ -45,7 +46,7 @@ function Tile(x, y, color, pos) {
 	//this.draw();
 	
 	this.init = function(){
-		this.shape.on("click", function (evt) {
+		this.shape.on("click", function (evt) {			
 			frog.jump(that);
 		});
 	};
@@ -81,10 +82,12 @@ function Level(columns, rows, startposition, goalposition, dim, tiles) {
 	};
 	
 	
-	this.spawn = function() {
-		frog.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
-		frog.x = -50;
-		frog.y = this.dim.halfheight() - 50;
+	this.spawn = function() { 
+		
+		//frog.graphics.beginStroke("#04B404").lineTo(0,0).lineTo(10,10.5).lineTo(10,0).cp();
+		frog.graphics.beginFill("#04B404").drawPolyStar(0, 0, 60, 3, 0, 0);
+		frog.x = -100;
+		frog.y = frog.tile.y;
 		stage.addChild(frog);
 		stage.update();
 		createjs.Tween.get(frog, {
@@ -102,20 +105,38 @@ function Level(columns, rows, startposition, goalposition, dim, tiles) {
 	this.spawn();
 	
 	frog.jump = function(tile) {
-		var tween = createjs.Tween.get(frog, {
+		if(checkForJump(tile)){
+			var tween = createjs.Tween.get(frog, {
 				loop : false
 			}).wait(500);
-		tween.to({
-			x : (tile.x-frog.x)/2 + frog.x,
-			y : tile.y - 100
-		}, 750, createjs.Ease.getPowOut(1));
-		tween.to({
-			x : tile.x,
-			y : tile.y - 50
-		}, 750, createjs.Ease.getPowOut(2));
-		frog.tile.disappear();
-		frog.tile = tile;
+			tween.to({
+				x : (tile.x-frog.x)/2 + frog.x,
+				y : tile.y - 100
+			}, 750, createjs.Ease.getPowOut(1));
+			tween.to({
+				x : tile.x,
+				y : tile.y
+			}, 750, createjs.Ease.getPowOut(2));
+			var tweenD = frog.tile.disappear();
+			frog.tile = tile;
+			if((frog.tile.pos.column === goalposition.column) && 
+			   (frog.tile.pos.row === goalposition.row)){
+				    var text = new createjs.Text("Gewonnen", "200px Arial", "#ff7700");
+					text.x = 100;
+					text.y = dim.halfheight();
+					text.alpha = 0;
+					createjs.Tween.get(text).wait(2000).to({alpha:1});
+					stage.update();
+					stage.addChild(text);
+					//text.y = dim.halfheight();
+				   console.log("gewonnen");
+			   }
+		}
 	};
+	
+	function checkForJump(tile){
+		return (Math.abs(frog.tile.pos.row - tile.pos.row) === 1) || (Math.abs(frog.tile.pos.column - tile.pos.column) === 1);
+	}
 	
 }
 
