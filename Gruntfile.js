@@ -41,10 +41,11 @@ module.exports = function(grunt) {
     	}
     },
     browserify:{
+
       dist: {
         options: {
            transform: [
-              ["babelify"]
+              ["babelify", { "presets": ["es2015"] }]
            ]
         },
         files: {
@@ -59,7 +60,14 @@ module.exports = function(grunt) {
     			'test/dist/bundle.js':'test/game_test.js'
     		}
     	}
-
+    },
+    simplemocha: {
+      all: {
+        src: ['test/**/*.js', '**/*.spec.js']
+      },
+      options: {
+        require: 'test/mocha-babel'
+      }
     }
 
   
