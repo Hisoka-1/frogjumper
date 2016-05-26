@@ -24,55 +24,40 @@ module.exports = function(grunt) {
 	pkg: config.pkg,
 	bower: grunt.file.readJSON('./.bowerrc'),
 	*/
-
-    jshint:{
-    	options:{
-    		esversion: 6
-    	},
-    	files: ['src/**/*.es6']
+    eslint: {
+      files: ['src/**/*.es6', 'src/**/*.jsx'],
+      options: {
+        configFile: 'conf/eslint.json'
+      }
     },
 
-    mocha:{
-    	test:{
-    		src: ['test/**/*.html']
-    	},
-    	options:{
-    		require: 'test/mocha-babel'
-    	}
-    },
     browserify:{
 
       dist: {
         options: {
            transform: [
+            ["reactify", {"es6": true}],
               ["babelify", { "presets": ["es2015"] }]
-           ]
+            ]
         },
         files: {
            // if the source file has an extension of es6 then
            // we change the name of the source file accordingly.
            // The result file's extension is always .js
-           "./dist/module.js": ["src/js/game.es6"]
+           "./dist/module.js": ["src/js/game.es6", "src/js/*.jsx"]
         }
-    	},
-    	test:{
-    		files:{
-    			'test/dist/bundle.js':'test/game_test.js'
-    		}
     	}
     },
-    simplemocha: {
-      all: {
-        src: ['test/**/*.js', '**/*.spec.js']
-      },
+    watch: {
+      files:['<%= jshint.files %>', 'game.html'],
+      tasks: ['default'],
       options: {
-        require: 'test/mocha-babel'
+        livereload: true
       }
-    }
-
-  
-    
+      
+      
+    } 
   });
   require('load-grunt-tasks')(grunt); 
-  grunt.registerTask('default', ['jshint', 'browserify']);
+  grunt.registerTask('default', ['eslint', 'browserify']);
 };

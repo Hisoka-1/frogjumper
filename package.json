@@ -37,12 +37,16 @@
     "grunt-babel": "^6.0.0",
     "grunt-browserify": "^5.0.0",
     "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^18.1.0",
     "grunt-mocha": "^1.0.1",
+    "grunt-reactify": "0.0.2",
     "grunt-simple-mocha": "^0.4.1",
     "load-grunt-tasks": "^3.5.0",
     "mocha": "^2.4.5",
     "react": "^15.0.1",
-    "react-dom": "^15.0.1"
+    "react-dom": "^15.0.1",
+    "reactify": "^1.1.1"
   },
   "keywords": []
 }
