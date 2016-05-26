@@ -7,101 +7,64 @@ var config = {
 };
 
 
+
 module.exports = function(grunt) {
 
 
   // Project configuration.
   grunt.initConfig({
-    // Metadata.
+   /* // Metadata.
     banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
       '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> \n',
     // Task configuration.
 	config: config,
 	pkg: config.pkg,
 	bower: grunt.file.readJSON('./.bowerrc'),
-	
-	
-    concat: {
+	*/
+
+    jshint:{
+    	options:{
+    		esversion: 6
+    	},
+    	files: ['src/**/*.es6']
+    },
+
+    mocha:{
+    	test:{
+    		src: ['test/**/*.html']
+    	},
+    	options:{
+    		require: 'test/mocha-babel'
+    	}
+    },
+    browserify:{
       dist: {
-		options: {
-			banner: '<%= banner %>',
-			stripBanners: true
-      },
-        src: ['src/<%= pkg.name %>.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      },
-	htmldist: {src: 'src/<%= pkg.name %>.html', dest: 'dist/<%= pkg.name %>.html'}
-    },
-    uglify: {
-      options: {
-        banner: '<%= banner %>'
-      },
-      dist: {
-		files: {
-          '<%= config.dist %>/js/lib.min.js': [
-            '<%= bower.directory %>/jquery/dist/jquery.js',
-			'<%= bower.directory %>/createjs-collection/index.js',
-          ],
-		  '<%= concat.dist.dest %>': [ 
-		    'dist/<%= pkg.name %>.min.js']
-        }
-      },
-    },
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc'
-      },                                                           
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      lib: {
         options: {
-          jshintrc: 'src/.jshintrc'
+           transform: [
+              ["babelify"]
+           ]
         },
-        src: ['src/**/*.js']
-      },
-      test: {
-        src: ['test/**/*.js']
-      },
-    },
-    watch: {
-      gruntfile: {
-        files: ['<%= jshint.gruntfile.src %>'],
-        tasks: ['jshint:gruntfile']
-      },
-	  srcchanged: {
-        files: ['src/*'],
-		tasks: ['concat', 'jshint'],
-        options:{
-			livereload:true
-		}
-      }
-    },
-	 connect: {
-      all: {
-        options:{
-          port: 9000,
-          hostname: "0.0.0.0"
+        files: {
+           // if the source file has an extension of es6 then
+           // we change the name of the source file accordingly.
+           // The result file's extension is always .js
+           "./dist/module.js": ["src/js/game.es6"]
         }
-      }
+    	},
+    	test:{
+    		files:{
+    			'test/dist/bundle.js':'test/game_test.js'
+    		}
+    	}
+
     }
+
+  
+    
   });
-
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'concat', 'uglify']);
-  grunt.registerTask('server',['connect', 'watch', ]);
+  require('load-grunt-tasks')(grunt); 
+  grunt.registerTask('default', ['jshint', 'browserify']);
 };
