@@ -5,4 +5,4 @@ var HelloMessage = React.createClass({
 });
 
 
-ReactDOM.render(<HelloMessage name="John" />, document.getElementById('content'));
+ReactDOM.render(<HelloMessage name="Jonton2" />, document.getElementById('content'));

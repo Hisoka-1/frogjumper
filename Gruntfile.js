@@ -49,15 +49,22 @@ module.exports = function(grunt) {
     	}
     },
     watch: {
-      files:['<%= jshint.files %>', 'game.html'],
+      files:['src/**/*', 'game.html'],
       tasks: ['default'],
-      options: {
-        livereload: true
+      options:{
+        livereload:true
       }
-      
-      
-    } 
+    },
+    connect:{
+      server:{
+        options: {
+          keepalive: true,
+        }
+      }
+    }
+
   });
   require('load-grunt-tasks')(grunt); 
+
   grunt.registerTask('default', ['eslint', 'browserify']);
 };

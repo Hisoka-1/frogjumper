@@ -1,0 +1,9 @@
+#level {
+	background-color: lightblue;
+}
+
+#spielstein {
+	height:50px;
+	weight:50px;
+	background-color:red;
+}
