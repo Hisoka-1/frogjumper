@@ -1,9 +1,16 @@
-#level {
+.Level {
 	background-color: lightblue;
 }
 
-#spielstein {
+.SpielStein {
+	display:inline-block;
 	height:50px;
-	weight:50px;
+	width:50px;
 	background-color:red;
+	border-radius:50%;
+}
+
+.KeinSpielStein {
+	height:50px;
+	width:50px;
 }
