@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var reactredux = require('react-redux');
 /*
 beinhaltet dargestellten SpielZeilen
 */
@@ -9,10 +10,9 @@ var Level= React.createClass({
 	},
 	render: function() {
 
-		var spielzeilen= this.props.data.map(function(zeile) {
-			return (<SpielZeile data= {zeile} key= {zeile.id} />);
-		});
-
+		var spielzeilen= this.props.data.map(
+			zeile =>  (<SpielZeile data= {zeile} key= {zeile.id} />)
+		);
 
 		return (
 			<div className="Level" ref="levelDom">
@@ -35,14 +35,10 @@ var SpielZeile= React.createClass({
 		var spalte= 0;
 		var anzahlSpalten = this.props.data.steine.length;
 		
-		var spielsteine= this.props.data.steine.map(function(stein){
+		var spielsteine= this.props.data.steine.map(stein => {
 			spalte++;
-			var spanStyle = {
-				//left: ((100/(anzahlSpalten+1)) * (spalte+1) + '%')
-				//width : (100/(anzahlSpalten+1)) + '%'
-			};
-
-			if(stein== 'x'){
+			var spanStyle = {};
+			if(stein == 'x'){
 				return (<SpielStein data={spanStyle} key={spalte} />);
 			}else {
 				return (<KeinSpielStein data={spanStyle} key={spalte}/>);
@@ -55,8 +51,9 @@ var SpielZeile= React.createClass({
 
 var SpielStein= React.createClass({
 	render: function() {
-		console.log(this.props);
-		return (<div className= "SpielStein" style={this.props.data}></div>);
+		return (<div className= "SpielStein" 
+		 style={this.props.data}
+		 onClick={() => alert(this.props.data)}></div>);
 	}
 });
 
