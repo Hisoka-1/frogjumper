@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var reactredux = require('react-redux');
+var ReactRedux = require('react-redux');
+var Redux = require('redux');
 /*
 beinhaltet dargestellten SpielZeilen
 */
@@ -53,9 +54,18 @@ var SpielStein= React.createClass({
 	render: function() {
 		return (<div className= "SpielStein" 
 		 style={this.props.data}
-		 onClick={() => alert(this.props.data)}></div>);
+		 //onClick={() => alert(this.props.data)}
+		 onClick = {()=>store.dispatch(clicked)}
+		 ></div>);
+		 
+		 
 	}
 });
+
+let store = Redux.createStore((x,y)=>{alert("state changed"); return x;} , "Start");
+
+const clicked = {type:"clicked"};
+
 
 var KeinSpielStein= React.createClass({
 	render: function(){
