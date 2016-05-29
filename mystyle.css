@@ -1,16 +1,28 @@
 .Level {
 	background-color: lightblue;
+	height:100%;
+	width:100%;
+	display:table;
+	text-align: center;
+ 	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
 }
 
 .SpielStein {
-	display:inline-block;
-	height:50px;
-	width:50px;
+	
 	background-color:red;
 	border-radius:50%;
+
 }
 
 .KeinSpielStein {
+
+}
+
+.SpielStein , .KeinSpielStein {
+	margin:25px;
 	height:50px;
 	width:50px;
+	display:inline-block;
 }

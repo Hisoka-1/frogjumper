@@ -2,6 +2,9 @@
 beinhaltet dargestellten SpielZeilen
 */
 var Level= React.createClass({
+	componentDidMount: function() {
+		//console.log(this.refs.levelDom.getDOMNode().width);
+	},
 	render: function() {
 
 		var spielzeilen= this.props.data.map(function(zeile) {
@@ -10,12 +13,14 @@ var Level= React.createClass({
 
 
 		return (
-			<div className="level" class="level" x="x">
+			<div className="Level" ref="levelDom">
 				{spielzeilen}
 			</div>
 
 			);
-	}
+	},
+
+
 });
 
 /*
@@ -26,12 +31,19 @@ var SpielZeile= React.createClass({
 		//var spielzeile= this.props.data.map(function(zeile) {
 			//return (zeile.steine.map(function(zeichen)){
 		var spalte= 0;
+		var anzahlSpalten = this.props.data.steine.length;
+		
 		var spielsteine= this.props.data.steine.map(function(stein){
 			spalte++;
+			var spanStyle = {
+				//left: ((100/(anzahlSpalten+1)) * (spalte+1) + '%')
+				//width : (100/(anzahlSpalten+1)) + '%'
+			};
+
 			if(stein== 'x'){
-				return (<SpielStein data={stein} key={spalte} />);
+				return (<SpielStein data={spanStyle} key={spalte} />);
 			}else {
-				return (<KeinSpielStein key={spalte}/>);
+				return (<KeinSpielStein data={spanStyle} key={spalte}/>);
 			}
 			
 		});
@@ -41,13 +53,14 @@ var SpielZeile= React.createClass({
 
 var SpielStein= React.createClass({
 	render: function() {
-		return (<span className= "SpielStein" ></span>);
+		console.log(this.props);
+		return (<div className= "SpielStein" style={this.props.data}></div>);
 	}
 });
 
 var KeinSpielStein= React.createClass({
 	render: function(){
-		return (<span className= "KeinSpielStein" />);
+		return (<div className= "KeinSpielStein" style={this.props.data}/>);
 	}
 });
 var level1= [
