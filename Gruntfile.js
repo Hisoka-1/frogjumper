@@ -35,23 +35,34 @@ module.exports = function(grunt) {
 
       dist: {
         options: {
-           transform: [
+          transform: [
             ["reactify", {"es6": true}],
               ["babelify", { "presets": ["es2015"] }]
-            ]
+            ],
         },
+
         files: {
-           // if the source file has an extension of es6 then
-           // we change the name of the source file accordingly.
-           // The result file's extension is always .js
-           "./dist/module.js": ["src/js/game.es6", "src/js/*.jsx"]
-        }
-    	}
+           "./dist/module.js": ["src/js/*.es6", "src/js/*.jsx"],
+        },
+    	},
+      watch: {
+          options: {
+          watch:true,
+          transform: [
+            ["reactify", {"es6": true}],
+              ["babelify", { "presets": ["es2015"] }]
+            ],
+         },   
+
+        files: {
+           "./dist/module.js": ["src/js/*.es6", "src/js/*.jsx"],
+        },
+      }
     },
     watch: {
-      files:['src/**/*', 'game.html'],
-      tasks: ['default'],
+      files:['dist/module.js', 'game.html'],
       options:{
+        keepAlive:true,
         livereload:true
       }
     },
@@ -66,5 +77,6 @@ module.exports = function(grunt) {
   });
   require('load-grunt-tasks')(grunt); 
 
-  grunt.registerTask('default', ['eslint', 'browserify']);
+  grunt.registerTask('default', ['eslint', 'browserify:dist']);
+  grunt.registerTask('watchStart', ['eslint', 'browserify:watch', 'watch']);
 };

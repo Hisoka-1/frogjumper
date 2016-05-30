@@ -2,11 +2,19 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactRedux = require('react-redux');
 var Redux = require('redux');
+
+var store = require('./store.es6'); //Redux.createStore((x,y)=>{console.log("state changed"); return x;} , "Start");
+var actions = require('./actions.es6');
+var levels= require('./maps.json');
+var gewuenschteslevel = location.search.slice(1);
 /*
 beinhaltet dargestellten SpielZeilen
 */
 var Level= React.createClass({
-	componentDidMount: function() {
+	//wenn dom erzeugt wird
+	componentWillMount: function() {
+
+		//gewuenschteslevel = location.search.slice(1);
 		//console.log(this.refs.levelDom.getDOMNode().width);
 	},
 	render: function() {
@@ -37,12 +45,15 @@ var SpielZeile= React.createClass({
 		var anzahlSpalten = this.props.data.steine.length;
 		
 		var spielsteine= this.props.data.steine.map(stein => {
+			var position = {
+				x: spalte,
+				y: this.props.data.id
+			};
 			spalte++;
-			var spanStyle = {};
 			if(stein == 'x'){
-				return (<SpielStein data={spanStyle} key={spalte} />);
+				return (<SpielStein data={position} key={spalte} />);
 			}else {
-				return (<KeinSpielStein data={spanStyle} key={spalte}/>);
+				return (<KeinSpielStein data={position} key={spalte}/>);
 			}
 			
 		});
@@ -53,26 +64,17 @@ var SpielZeile= React.createClass({
 var SpielStein= React.createClass({
 	render: function() {
 		return (<div className= "SpielStein" 
-		 style={this.props.data}
-		 //onClick={() => alert(this.props.data)}
-		 onClick = {()=>store.dispatch(clicked)}
+		 onClick = {()=>store.dispatch(actions.spielsteinGeklickt(this.props.data))}
 		 ></div>);
 		 
 		 
 	}
 });
 
-let store = Redux.createStore((x,y)=>{alert("state changed"); return x;} , "Start");
-
-const clicked = {type:"clicked"};
-
-
 var KeinSpielStein= React.createClass({
 	render: function(){
-		return (<div className= "KeinSpielStein" style={this.props.data}/>);
+		return (<div className= "KeinSpielStein" />);
 	}
 });
-var level1= [
-	{id: 1, steine:['x', 'x', 'x', 'x', ' ']}];
 
-ReactDOM.render(<Level data={level1}/>, document.getElementById('level'));
+ReactDOM.render(<Level data={levels[gewuenschteslevel]}/>, document.getElementById('level'));
