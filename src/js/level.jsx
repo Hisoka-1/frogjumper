@@ -27,7 +27,6 @@ var Level= React.createClass({
 			<div className="Level" ref="levelDom">
 				{spielzeilen}
 			</div>
-
 			);
 	},
 
@@ -64,12 +63,16 @@ var SpielZeile= React.createClass({
 var SpielStein= React.createClass({
 	render: function() {
 		return (<div className= "SpielStein" 
-		 onClick = {()=>store.dispatch(actions.spielsteinGeklickt(this.props.data))}
+		 //onClick = {onSpielsteinClick(this.props.data)}
 		 ></div>);
-		 
-		 
 	}
 });
+
+SpielStein = ReactRedux.connect(var x,
+	(dispatch) => {
+		return {onClick: (id)=> {dispatch(actions.spielsteinGeklickt(id))}};
+	}
+	)(SpielStein);
 
 var KeinSpielStein= React.createClass({
 	render: function(){
@@ -77,4 +80,15 @@ var KeinSpielStein= React.createClass({
 	}
 });
 
-ReactDOM.render(<Level data={levels[gewuenschteslevel]}/>, document.getElementById('level'));
+var Frosch = React.createClass({
+	render: function(){
+		return (<div className="Frosch" />);
+	}
+});
+
+ReactDOM.render(
+	<ReactRedux.Provider store={store}>
+		<Level data={levels[gewuenschteslevel]} />
+	</ReactRedux.Provider>
+	, document.getElementById('level'));
+

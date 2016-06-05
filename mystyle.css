@@ -20,9 +20,16 @@
 
 }
 
-.SpielStein , .KeinSpielStein {
+.SpielStein , .KeinSpielStein , .Frosch{
 	margin:25px;
 	height:50px;
 	width:50px;
 	display:inline-block;
 }
+
+.Frosch {
+	background-image: url("Frosch.svg");
+	background-repeat: no-repeat;
+	position:relative;
+}
+
