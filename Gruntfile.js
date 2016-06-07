@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 	bower: grunt.file.readJSON('./.bowerrc'),
 	*/
     eslint: {
-      files: ['src/**/*.es6', 'src/**/*.jsx'],
+      files: ['src/**/*.es6', 'src/**/*.js'],
       options: {
         configFile: 'conf/eslint.json'
       }

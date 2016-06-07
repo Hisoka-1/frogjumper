@@ -18,16 +18,19 @@ var Level= React.createClass({
 		//console.log(this.refs.levelDom.getDOMNode().width);
 	},
 	render: function() {
-
-		var spielzeilen= this.props.data.map(
-			zeile =>  (<SpielZeile data= {zeile} key= {zeile.id} />)
-		);
-
-		return (
+		if(!this.props.data){
+			return (<div> Kein Level ausgewählt </div>);
+		}else {
+			var spielzeilen= this.props.data.map(
+				zeile =>  (<SpielZeile data= {zeile} key= {zeile.id} />)
+			);
+			return (
 			<div className="Level" ref="levelDom">
 				{spielzeilen}
 			</div>
 			);
+		}
+
 	},
 
 
@@ -42,7 +45,7 @@ var SpielZeile= React.createClass({
 			//return (zeile.steine.map(function(zeichen)){
 		var spalte= 0;
 		var anzahlSpalten = this.props.data.steine.length;
-		
+
 		var spielsteine= this.props.data.steine.map(stein => {
 			var position = {
 				x: spalte,
@@ -50,7 +53,7 @@ var SpielZeile= React.createClass({
 			};
 			spalte++;
 			if(stein == 'x'){
-				return (<SpielStein data={position} key={spalte} />);
+				return (<VisibleClick data={position} key={spalte} />);
 			}else {
 				return (<KeinSpielStein data={position} key={spalte}/>);
 			}
@@ -62,17 +65,37 @@ var SpielZeile= React.createClass({
 
 var SpielStein= React.createClass({
 	render: function() {
-		return (<div className= "SpielStein" 
+		return (<div className= "SpielStein" style={{backgroundColor:'white'}}
 		 //onClick = {onSpielsteinClick(this.props.data)}
+		 //onClick = {() => (store.dispatch(actions.spielsteinGeklickt(3)))}
+		 onClick = {()=> this.props.onTodoClick(this.props.data.x)}
 		 ></div>);
 	}
 });
 
-SpielStein = ReactRedux.connect(var x,
-	(dispatch) => {
-		return {onClick: (id)=> {dispatch(actions.spielsteinGeklickt(id))}};
-	}
+//var SpielStein = ReactRedux.connect(
+
+//	(dispatch) => {
+//		return {onClick: (id)=> {
+//			dispatch(actions.spielsteinGeklickt(id));
+//		}};
+//	}
+//	)(SpielStein);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onTodoClick: (id) => {
+      dispatch(actions.spielsteinGeklickt(id))
+    }
+  }
+}
+
+const VisibleClick = ReactRedux.connect(
+	()=>{return {}},
+	mapDispatchToProps
 	)(SpielStein);
+
+
 
 var KeinSpielStein= React.createClass({
 	render: function(){
