@@ -42,7 +42,7 @@ module.exports = function(grunt) {
         },
 
         files: {
-           "./dist/module.js": ["src/js/*.es6", "src/js/*.jsx"],
+           "./dist/module.js": ["src/**/*.es6", "src/**/*.jsx"],
         },
     	},
       watch: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
          },   
 
         files: {
-           "./dist/module.js": ["src/js/*.es6", "src/js/*.jsx"],
+           "./dist/module.js": ["src/**/*.es6", "src/**/*.jsx"],
         },
       }
     },
@@ -71,6 +71,12 @@ module.exports = function(grunt) {
         options: {
           keepalive: true,
         }
+      }
+    },
+    concurrent: {
+      target1: ['connect', 'watchStart'],
+      options: {
+        logConcurrentOutput: true
       }
     }
 
