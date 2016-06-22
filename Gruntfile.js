@@ -83,6 +83,7 @@ module.exports = function(grunt) {
   });
   require('load-grunt-tasks')(grunt); 
 
-  grunt.registerTask('default', ['eslint', 'browserify:dist']);
+  //grunt.registerTask('default', ['eslint', 'browserify:dist']);
+  grunt.registerTask('default', 'concurrent')
   grunt.registerTask('watchStart', ['eslint', 'browserify:watch', 'watch']);
 };

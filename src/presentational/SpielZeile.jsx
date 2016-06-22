@@ -2,6 +2,7 @@ let React = require('react');
 let ReactRedux = require('react-redux');
 let VisibleClick = require('../container/VisibleClick.jsx');
 let KeinSpielStein = require('./KeinSpielStein.jsx');
+let StartSteinImState = require('../container/StartSteinImState.jsx');
 
 let SpielZeile= React.createClass({
 	render: function() {
@@ -14,10 +15,14 @@ let SpielZeile= React.createClass({
 				y: this.props.data.id
 			};
 			spalte++;
-			if(stein == 'x'){
-				return (<VisibleClick data={position} key={spalte} />);
-			}else {
-				return (<KeinSpielStein data={position} key={spalte}/>);
+			switch(stein){
+				case 'x':
+					return (<VisibleClick data={position} key={spalte} />);
+				case 's':
+					return (<StartSteinImState data={position} key={spalte}/>);
+				default :
+					return (<KeinSpielStein data={position} key={spalte}/>);
+
 			}
 			
 		});

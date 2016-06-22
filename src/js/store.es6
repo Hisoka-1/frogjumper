@@ -13,6 +13,12 @@ function gameLogic(state = intitalState, action) {
 				state:'Begonnen',
 				spielSteinPositon : action.position
 			});
+
+		case 'startSteinInitialisiert':
+			return Object.assign({}, state, {
+				state:'startSteinInitialisiert',
+				spielSteinPositon: action.position
+			});
 		default:
 			return state;
 	};

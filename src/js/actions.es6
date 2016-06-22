@@ -5,3 +5,10 @@ module.exports.spielsteinGeklickt = (position) => {
 		position: position
 	};
 };
+
+module.exports.startSteinInitialisiert = (position) => {
+	return {
+		type: 'startSteinInitialisiert',
+		position: position
+	};
+};
