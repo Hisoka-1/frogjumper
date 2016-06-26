@@ -1,22 +1,19 @@
-let React = require('react');
-let ReactRedux = require('react-redux');
-let StartStein = require('../presentational/StartStein.jsx')
-let Actions = require('../js/actions.es6');
+import React from 'react'
+import {connect}  from 'react-redux'
+import StartStein  from '../presentational/StartStein.jsx'
+import {startSteinInitialisiert}  from '../js/actions.es6'
 
 const mapDispatchToProps = (dispatch) => {
   return { 
 	    onInit: (id) => {
-	      dispatch(Actions.startSteinInitialisiert(id))
+	      dispatch(startSteinInitialisiert(id))
 	    }
 	}
 }
 
-const StartSteinImState = ReactRedux.connect(
+const StartSteinImState = connect(
 	()=>{return {}},
 	mapDispatchToProps
 	)(StartStein);
 
-
-
-
-module.exports = StartSteinImState;
+export {StartSteinImState as default};

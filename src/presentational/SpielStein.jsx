@@ -1,6 +1,6 @@
-let React = require('react');
+import React, {createClass} from 'react';
 
-let SpielStein= React.createClass({
+const SpielStein= createClass({
 	render: function() {
 		return (<div className= "SpielStein" style={{backgroundColor:'white'}}
 		 onClick = {()=> this.props.onTodoClick(this.props.data)}
@@ -8,4 +8,4 @@ let SpielStein= React.createClass({
 	}
 });
 
-module.exports = SpielStein;
+export {SpielStein as default};

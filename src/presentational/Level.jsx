@@ -1,7 +1,7 @@
-let React = require('react');
-let SpielZeile = require('./SpielZeile.jsx');
+import React, {createClass} from 'react';
+import SpielZeile from './SpielZeile.jsx';
 
-let Level = React.createClass({
+const Level = createClass({
 	render: function() {
 		if(!this.props.data){
 			return (<div> Kein Level ausgewählt </div>);
@@ -21,5 +21,4 @@ let Level = React.createClass({
 
 });
 
-
-module.exports = Level;
+export {Level as default};

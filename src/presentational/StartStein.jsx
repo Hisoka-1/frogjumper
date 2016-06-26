@@ -1,6 +1,6 @@
-let React = require('react');
+import React, {createClass} from 'react'
 
-let StartStein= React.createClass({
+let StartStein = createClass({
 	componentDidMount: function () {this.props.onInit(this.props.data)},
 	render: function() {
 		return (<div className= "StartStein" style={{backgroundColor:'black'}}
@@ -8,4 +8,4 @@ let StartStein= React.createClass({
 	}
 });
 
-module.exports = StartStein;
+export {StartStein as default};

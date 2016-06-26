@@ -1,10 +1,9 @@
-let React = require('react');
-let ReactRedux = require('react-redux');
-let VisibleClick = require('../container/VisibleClick.jsx');
-let KeinSpielStein = require('./KeinSpielStein.jsx');
-let StartSteinImState = require('../container/StartSteinImState.jsx');
+import React, {createClass} from 'react';
+import VisibleClick from '../container/VisibleClick.jsx'
+import KeinSpielStein from './KeinSpielStein.jsx'
+import StartSteinImState from './../container/StartSteinImState.jsx' 
 
-let SpielZeile= React.createClass({
+let SpielZeile= createClass({
 	render: function() {
 		var spalte= 0;
 		var anzahlSpalten = this.props.data.steine.length;
@@ -33,4 +32,4 @@ let SpielZeile= React.createClass({
 
 
 
-module.exports = SpielZeile;
+export {SpielZeile as default};

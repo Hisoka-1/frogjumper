@@ -1,4 +1,4 @@
-var Redux = require('redux');
+import {createStore} from 'redux'
 
 const intitalState = {
 	state:'Anfang',
@@ -30,6 +30,6 @@ function gameLogic(state = intitalState, action) {
 	return state;
 };
 
-let store = Redux.createStore(gameLogic, intitalState, window.devToolsExtension());
+const Store = createStore(gameLogic, intitalState, window.devToolsExtension());
 
-module.exports = store;
+export {Store as default};

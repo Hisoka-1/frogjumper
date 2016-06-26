@@ -1,9 +1,9 @@
-let React = require('react');
+import React, {createClass} from 'react';
 
-const KeinSpielStein= React.createClass({
+const KeinSpielStein= createClass({
 	render: function(){
 		return (<div className= "KeinSpielStein" />);
 	}
 });
 
-module.exports = KeinSpielStein;
+export {KeinSpielStein as default};

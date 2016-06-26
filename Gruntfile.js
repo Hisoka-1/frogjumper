@@ -36,8 +36,8 @@ module.exports = function(grunt) {
       dist: {
         options: {
           transform: [
-            ["reactify", {"es6": true}],
-              ["babelify", { "presets": ["es2015"] }]
+            //["reactify", {"es6": true}],
+              ["babelify", { "presets": ["react","es2015"] }]
             ],
         },
 
@@ -49,8 +49,8 @@ module.exports = function(grunt) {
           options: {
           watch:true,
           transform: [
-            ["reactify", {"es6": true}],
-              ["babelify", { "presets": ["es2015"] }]
+            //["reactify", {"es6": true}],
+              ["babelify", { "presets": ["react", "es2015"] }]
             ],
          },   
 

@@ -1,7 +1,7 @@
-let React = require('react');
-let ReactRedux = require('react-redux');
-let SpielStein = require('../presentational/SpielStein.jsx')
-let Actions = require('../js/actions.es6');
+import React from 'react'
+import {connect} from 'react-redux'
+import SpielStein from '../presentational/SpielStein.jsx'
+import Actions from '../js/actions.es6'
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -11,12 +11,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const VisibleClick = ReactRedux.connect(
+const VisibleClick = connect(
 	()=>{return {}},
 	mapDispatchToProps
 	)(SpielStein);
 
-
-
-
-module.exports = VisibleClick;
+export {VisibleClick as default};
