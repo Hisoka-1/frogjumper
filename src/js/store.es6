@@ -19,12 +19,17 @@ function gameLogic(state = intitalState, action) {
 				state:'startSteinInitialisiert',
 				spielSteinPositon: action.position
 			});
+		case 'loadLevel':
+			return Object.assign({}, state, {
+				state:'loadLevel',
+				level: action.level
+			});
 		default:
 			return state;
 	};
 	return state;
 };
 
-let store = Redux.createStore(gameLogic);
+let store = Redux.createStore(gameLogic, intitalState, window.devToolsExtension());
 
 module.exports = store;

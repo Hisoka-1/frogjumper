@@ -6,6 +6,7 @@ var Redux = require('redux');
 var store = require('./store.es6');
 var levels= require('./maps.json');
 var gewuenschteslevel = location.search.slice(1);
+var actions = require('./actions.es6');
 /*
 beinhaltet dargestellten SpielZeilen
 */
@@ -18,9 +19,12 @@ var Frosch = React.createClass({
 	}
 });
 
+const aktuellesLevel = levels[gewuenschteslevel];
+
 ReactDOM.render(
 	<ReactRedux.Provider store={store}>
-		<Level data={levels[gewuenschteslevel]} />
+		<Level data={aktuellesLevel} />
 	</ReactRedux.Provider>
 	, document.getElementById('level'));
 
+store.dispatch(actions.loadLevel(aktuellesLevel))

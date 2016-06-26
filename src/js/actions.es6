@@ -12,3 +12,10 @@ module.exports.startSteinInitialisiert = (position) => {
 		position: position
 	};
 };
+
+module.exports.loadLevel = (level) => {
+	return {
+		type: 'loadLevel',
+		level: level
+	};
+};
