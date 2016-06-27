@@ -1,35 +1,28 @@
 import React, {createClass} from 'react';
-import VisibleClick from '../container/VisibleClick.jsx'
-import KeinSpielStein from './KeinSpielStein.jsx'
-import StartSteinImState from './../container/StartSteinImState.jsx' 
+import {connect} from 'react-redux'
+import SpielStein from './SpielStein.jsx'
 
 let SpielZeile= createClass({
 	render: function() {
 		var spalte= 0;
-		var anzahlSpalten = this.props.data.steine.length;
 
-		var spielsteine= this.props.data.steine.map(stein => {
+		var spielsteine= this.props.level[this.props.zeilenNr].map(stein => {
 			var position = {
 				x: spalte,
-				y: this.props.data.id
+				y: this.props.zeilenNr
 			};
 			spalte++;
-			switch(stein){
-				case 'x':
-					return (<VisibleClick data={position} key={spalte} />);
-				case 's':
-					return (<StartSteinImState data={position} key={spalte}/>);
-				default :
-					return (<KeinSpielStein data={position} key={spalte}/>);
-
-			}
-			
+			return (<SpielStein typ = {stein} position={position} key = {spalte}/>);
 		});
 		return (<div className="SpielZeile" class="SpielZeile">{spielsteine}</div>);
 	}
 });
 
+const SpielZeileMitState = connect(
+	(state)=>{return {
+		level:state.level
+	}},
+	{}
+	)(SpielZeile);
 
-
-
-export {SpielZeile as default};
+export {SpielZeileMitState as default};

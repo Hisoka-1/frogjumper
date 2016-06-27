@@ -1,27 +1,32 @@
-import {createStore} from 'redux'
+import {createStore} from 'redux';
+import * as GameEngine from './GameEngine.es6';
 
 const intitalState = {
-	state:'Anfang',
+	count:0,
 	spielSteinPositon: {x:0, y:0}
 };
 
 function gameLogic(state = intitalState, action) {
-	console.log(action.position);
 	switch(action.type){
 		case 'spielsteinGeklickt':
+			if(!GameEngine.moveErlaubt(state.level, action.position)){
+					return state;
+				}
+
 			return Object.assign({}, state, {
-				state:'Begonnen',
-				spielSteinPositon : action.position
+				count:state.count+1,
+				spielSteinPositon : action.position,
+				level: GameEngine.handleMove(state.level, action.position)
 			});
 
 		case 'startSteinInitialisiert':
 			return Object.assign({}, state, {
-				state:'startSteinInitialisiert',
+				count:state.count+1,
 				spielSteinPositon: action.position
 			});
 		case 'loadLevel':
 			return Object.assign({}, state, {
-				state:'loadLevel',
+				count: state.count+1,
 				level: action.level
 			});
 		default:

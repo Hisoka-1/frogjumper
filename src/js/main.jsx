@@ -20,10 +20,11 @@ const Frosch = createClass({
 const urlParam = location.search.slice(1);
 const aktuellesLevel = levels[urlParam];
 
+store.dispatch(actions.loadLevel(aktuellesLevel));
+
 render(
 	<Provider store={store}>
-		<Level data={aktuellesLevel} />
+		<Level />
 	</Provider>
 	, document.getElementById('level'));
 
-store.dispatch(actions.loadLevel(aktuellesLevel))

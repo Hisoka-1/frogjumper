@@ -1,13 +1,15 @@
 import React, {createClass} from 'react';
 import SpielZeile from './SpielZeile.jsx';
+import {connect}  from 'react-redux'
 
 const Level = createClass({
 	render: function() {
-		if(!this.props.data){
+		if(!this.props.level){
 			return (<div> Kein Level ausgewählt </div>);
 		}else {
-			var spielzeilen= this.props.data.map(
-				zeile =>  (<SpielZeile data= {zeile} key= {zeile.id} />)
+			var zeilenNr = 0;
+			var spielzeilen= this.props.level.map(
+				zeile =>  (<SpielZeile zeilenNr = {zeilenNr} key= {zeilenNr++} />)
 			);
 			return (
 			<div className="Level" ref="levelDom">
@@ -21,4 +23,11 @@ const Level = createClass({
 
 });
 
-export {Level as default};
+const LevelMitState = connect(
+	(state) => {return {
+		level: state.level
+	}},
+	{}
+	)(Level);
+
+export {LevelMitState as default};
