@@ -13,13 +13,16 @@ export function handleMove(level, neuePosition){
 	}
 
 	console.log(neuePosition);
-	return level.map((x, pos) => {
-		if(x == 's'){
-			return ' ';
-		}else if(pos == neuePosition){
-			return 's';
-		}else {
-			return x;
-		}
+	return level.map((zeile, y) => {
+		return zeile.map((typ, x) =>{
+			if(typ == 's'){
+				return ' ';
+			}else if(x == neuePosition.x && y == neuePosition.y){
+				return 's';
+			}else {
+				return typ;
+			}
+		});
+		
 	});
 }
