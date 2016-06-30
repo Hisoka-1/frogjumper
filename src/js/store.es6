@@ -9,10 +9,6 @@ const intitalState = {
 function gameLogic(state = intitalState, action) {
 	switch(action.type){
 		case 'spielsteinGeklickt':
-			if(!GameEngine.moveErlaubt(state.level, action.position)){
-					return state;
-				}
-
 			return Object.assign({}, state, {
 				count:state.count+1,
 				spielSteinPositon : action.position,

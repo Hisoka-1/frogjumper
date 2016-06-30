@@ -14,7 +14,7 @@ const SpielStein= createClass({
 	},
 	statics: {
 		getTyp: function(level, position){
-			return level[position.y][position.x];
+			return level.array[position.zeile][position.spalte];
 		},
 		getBackgroundColor(typ){
 			switch (typ) {

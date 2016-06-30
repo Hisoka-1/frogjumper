@@ -1,3 +1,4 @@
+import Level from '../entities/Level.es6';
 
 module.exports.spielsteinGeklickt = (position) => {
 	return {
@@ -16,6 +17,6 @@ module.exports.startSteinInitialisiert = (position) => {
 module.exports.loadLevel = (level) => {
 	return {
 		type: 'loadLevel',
-		level: level
+		level: new Level(level)
 	};
 };
