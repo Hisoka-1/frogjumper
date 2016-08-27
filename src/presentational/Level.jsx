@@ -1,13 +1,12 @@
 import React, {createClass} from 'react';
 import SpielZeile from './SpielZeile.jsx';
 import {connect}  from 'react-redux';
+import Menu from './Menu.jsx'
 
 
 const LevelComp = createClass({
 	render: function() {
-		if(!this.props.level){
-			return (<div> Kein Level ausgewählt </div>);
-		}else {
+		if(this.props.level) {
 			var zeilenNr = 0;
 			var spielzeilen= this.props.level.array.map(
 				zeile =>  (<SpielZeile zeilenNr = {zeilenNr} key= {zeilenNr++} />)
@@ -17,7 +16,10 @@ const LevelComp = createClass({
 				{spielzeilen}
 			</div>
 			);
+		}else {
+			return (<Menu></Menu>);
 		}
+		return null;
 
 	},
 

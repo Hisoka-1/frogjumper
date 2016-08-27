@@ -31,6 +31,6 @@ function gameLogic(state = intitalState, action) {
 	return state;
 };
 
-const Store = createStore(gameLogic, intitalState, window.devToolsExtension());
+const Store = createStore(gameLogic, intitalState, window.devToolsExtension !== undefined ? window.devToolsExtension() : undefined);
 
 export {Store as default};

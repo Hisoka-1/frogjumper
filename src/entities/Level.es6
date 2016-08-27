@@ -3,18 +3,22 @@ import Position from '../entities/Position.es6';
 export default class Level {
 	constructor(array){
 		this.array = array;
-		this.position = this.getSpielSteinPosition();
+		if (this.array !== undefined){
+			this.position = this.getSpielSteinPosition();
+		}
 		console.log(`position set: ${this.position}`);
 	}
 	toString(){
 		return this.array.toString();
 	}
 	getSpielSteinPosition(){
-		for(const [zeile, element] of this.array.entries()){
+		var zeile = 0; //workaround .entries() nicht unterstuetzt in ie
+		for(let element of this.array){
 			var spalte = element.findIndex(stein => stein == 's');
 			if(spalte != -1){
 				return new Position(zeile, spalte);
 			}
+			zeile++;
 		}
 	}
 
@@ -22,7 +26,7 @@ export default class Level {
 		if(this.position.equals(neuePosition)){
 			return false;
 		}
-		for(let neighbour of this.getNeighbours().values()){
+		for(let neighbour of this.getNeighbours()){
 			if(neuePosition.equals(neighbour)){
 				return true;
 			}
@@ -37,7 +41,6 @@ export default class Level {
 		neighbours.push(this.recursiveNeighbourOneDirection('left'));
 		neighbours.push(this.recursiveNeighbourOneDirection('right'));
 		
-		console.log(neighbours);
 		return neighbours;
 
 	}

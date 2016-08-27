@@ -1,4 +1,4 @@
-.Level {
+.Background {
 	background-color: lightblue;
 	height:100%;
 	width:100%;
@@ -9,9 +9,24 @@
   	justify-content: center;
 }
 
+.Titel {
+	font-size: 150px;
+	color:green;
+	text-shadow:  1px  1px 5px black,
+                  1px -1px 5px black,
+                 -1px  1px 5px black,
+                 -1px -1px 5px black;
+    text-transform: uppercase;
+    font-family: fantasy;
+}
+
+.TitelZeile{
+    position: relative;
+	bottom: 20%;
+}
+
 .SpielStein, .StartStein {
 	border-radius:50%;
-
 }
 
 .KeinSpielStein {
