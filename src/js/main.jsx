@@ -28,10 +28,10 @@ if(aktuellesLevel!==undefined){
 
 
 render(
-    <span className = "Background test">
-	<Provider store={store}>
-		<Level />
-	</Provider>
+    <span className = "Background">
+    	<Provider store={store}>
+    		<Level />
+    	</Provider>
     </span>
 	, document.getElementById('level'));
 

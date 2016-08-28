@@ -17,14 +17,14 @@
                  -1px  1px 5px black,
                  -1px -1px 5px black;
     text-transform: uppercase;
-    font-family: fantasy;
+    font-family: arial;
     padding: 5px;
     display:inline-block;
 }
 
 .TitelZeile{
     position: relative;
-	bottom: 20%;
+	bottom: 100px;
 }
 
 .SpielStein, .StartStein {
@@ -48,11 +48,36 @@
 	position:relative;
 }
 
-.example-appear {
+.letter-appear {
   opacity: 0.01;
 }
 
-.example-appear.example-appear-active {
+.letter-appear.letter-appear-active {
   opacity: 1;
   transition: opacity .5s ease-in;
+}
+
+.Button {
+  background: #a6ffbb;
+  background-image: -webkit-linear-gradient(top, #a6ffbb, #4da157);
+  background-image: -moz-linear-gradient(top, #a6ffbb, #4da157);
+  background-image: -ms-linear-gradient(top, #a6ffbb, #4da157);
+  background-image: -o-linear-gradient(top, #a6ffbb, #4da157);
+  background-image: linear-gradient(to bottom, #a6ffbb, #4da157);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 14px;
+  text-shadow: 0px 0px 0px #ffffff;
+  font-family: Arial;
+  color: #000000;
+  font-size: 37px;
+  padding: 5px 20px 5px 20px;
+  border: solid #000000 4px;
+  text-decoration: none;
+  margin:auto;
+  width:50%;
+}
+
+.Button:hover {
+  text-decoration: none;
 }

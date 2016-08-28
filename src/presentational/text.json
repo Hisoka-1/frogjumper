@@ -1,7 +1,11 @@
-[
-    {
-        'german': {
-            'title' : 'FroJu'
-        }
-    }
-]
+{
+    "german":{
+        "title":"FroJu",
+        "easy":"leicht",
+        "medium":"mittel",
+        "hard":"schwer"
+},
+    "english":{
+        "title":"FroJu"
+}
+}

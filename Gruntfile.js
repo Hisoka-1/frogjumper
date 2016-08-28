@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         },
 
         files: {
-           "./dist/module.js": ["src/**/*.es6", "src/**/*.jsx"],
+           "./dist/module.js": ["src/**/*.*"],
         },
     	},
       watch: {
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
          },   
 
         files: {
-           "./dist/module.js": ["src/**/*.es6", "src/**/*.jsx"],
+           "./dist/module.js": ["src/**/*.*"],
         },
       }
     },
