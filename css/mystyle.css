@@ -1,5 +1,11 @@
 .Background {
-	background-color: lightblue;
+    background: -moz-linear-gradient(90deg, rgba(8,152,255,1) 0%, rgba(5,209,255,1) 100%); /* ff3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(5,209,255,1)), color-stop(100%, rgba(8,152,255,1))); /* safari4+,chrome */
+    background: -webkit-linear-gradient(90deg, rgba(8,152,255,1) 0%, rgba(5,209,255,1) 100%); /* safari5.1+,chrome10+ */
+    background: -o-linear-gradient(90deg, rgba(8,152,255,1) 0%, rgba(5,209,255,1) 100%); /* opera 11.10+ */
+    background: -ms-linear-gradient(90deg, rgba(8,152,255,1) 0%, rgba(5,209,255,1) 100%); /* ie10+ */
+    background: linear-gradient(0deg, rgba(8,152,255,1) 0%, rgba(5,209,255,1) 100%); /* w3c */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#05D1FF', endColorstr='#0898FF',GradientType=0 ); /* ie6-9 */
 	height:100%;
 	width:100%;
 	display:table;
@@ -9,22 +15,28 @@
   	justify-content: center;
 }
 
+body {
+    margin: 0px;
+}
+
+.Titel, .Button{
+    text-transform: uppercase;
+    font-family: arial;
+}
+
 .Titel {
-	font-size: 150px;
+	font-size: 125px;
 	color:green;
 	text-shadow:  1px  1px 5px black,
                   1px -1px 5px black,
                  -1px  1px 5px black,
                  -1px -1px 5px black;
-    text-transform: uppercase;
-    font-family: arial;
     padding: 5px;
     display:inline-block;
 }
 
 .TitelZeile{
     position: relative;
-	bottom: 100px;
 }
 
 .SpielStein, .StartStein {
@@ -43,7 +55,7 @@
 }
 
 .Frosch {
-	background-image: url("Frosch.svg");
+	background-image: url("../src/sprites/Frosch.png");
 	background-repeat: no-repeat;
 	position:relative;
 }

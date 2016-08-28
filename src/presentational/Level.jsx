@@ -11,8 +11,10 @@ const LevelComp = createClass({
 			var spielzeilen= this.props.level.array.map(
 				zeile =>  (<SpielZeile zeilenNr = {zeilenNr} key= {zeilenNr++} />)
 			);
+
+			
 			return (
-			<div className="Level" ref="levelDom">
+			<div className="Level" >
 				{spielzeilen}
 			</div>
 			);

@@ -1,16 +1,18 @@
 import React, {createClass} from 'react'
 import {connect} from 'react-redux'
 import Actions from '../js/actions.es6'
+import Frosch from './Frosch.jsx'
 
 const SpielStein= createClass({
 	render: function() {
 		const clickHandler = this.props.typ != " " ?()=> this.props.onTodoClick(this.props.position):()=>{};
-
-
+		var frosch = (x) => {return x=='s'?(<Frosch  />) : '';} ;
 		return (<div className= "SpielStein" 
 		 style={this.props.style}
 		 onClick = {clickHandler}
-		 ></div>);
+		 data-typ = {this.props.typ}
+		 ref = {(c) => this.ref = c}
+		 >{frosch(this.props.typ)}</div>);
 	},
 	statics: {
 		getTyp: function(level, position){
@@ -24,6 +26,16 @@ const SpielStein= createClass({
 				default : return '';
 			}
 		}
+	},
+	componentDidMount: function () {
+		if(this.props.typ == 's')
+			console.log(this.ref)
+	},
+	componentDidUpdate: function() {
+		//var spielposition = document.querySelector('[data-typ=s]');
+		//console.log (spielposition.getBoundingClientRect() + '');
+		if(this.props.typ == 's')
+			console.log(this.ref)
 	}
 });
 

@@ -1,4 +1,5 @@
 import Level from '../entities/Level.es6';
+import levels from '../js/maps.json'
 
 module.exports.spielsteinGeklickt = (position) => {
 	return {
@@ -14,9 +15,15 @@ module.exports.startSteinInitialisiert = (position) => {
 	};
 };
 
-module.exports.loadLevel = (level) => {
+module.exports.loadLevel = (levelNr) => {
 	return {
 		type: 'loadLevel',
-		level: new Level(level)
+		level: new Level(levels[levelNr])
+	};
+};
+
+module.exports.menueButtonGeklickt = () => {
+	return {
+
 	};
 };

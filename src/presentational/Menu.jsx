@@ -3,6 +3,8 @@ import {connect}  from 'react-redux';
 import text from './text.json';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Button from './MenuButton.jsx'
+import levels from '../js/maps.json'
+
 
 const Menu = createClass({
     render: function() {
@@ -32,9 +34,9 @@ const Menu = createClass({
                                     {x}</div>
                                 })}
                         </ReactCSSTransitionGroup>
-                    <Button text = {leicht}  ></Button>
-                    <Button text = {mittel}  ></Button>
-                    <Button text = {schwer}  ></Button>
+                    <Button text = {leicht} level={1} ></Button>
+                    <Button text = {mittel} level={ Math.floor(levels.length/3) * 1 }></Button>
+                    <Button text = {schwer} level={ Math.floor(levels.length/3) * 2 }></Button>
                 </div>
                 );
     }

@@ -2,21 +2,22 @@ import React, {createClass} from 'react';
 import {connect}  from 'react-redux';
 import text from './text.json';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Actions from '../js/actions.es6'
 
 const Button = createClass({
     render: function() {        
             return (
                 
-                    <ReactCSSTransitionGroup transitionName="letter" 
+                    <ReactCSSTransitionGroup transitionName="x" 
                     transitionAppear={true} 
                     transitionAppearTimeout={500} 
                     transitionEnterTimeout={500} 
                     transitionLeaveTimeout = {500}>
-                    <div style={{padding:'20px', alignContent: 'center'}}>
+                    <div style={{padding:'10px', alignContent: 'center'}}>
                         <a 
                             className="Button" 
                             style= {{display:'block'}}
-                            onClick = {() => this.props.onTodoClick(this.props.text)}
+                            onClick = {() => this.props.onTodoClick(this.props.level)}
                         >{this.props.text}</a>    
                     </div>
                     </ReactCSSTransitionGroup>
@@ -33,8 +34,7 @@ const ButtonMitState = connect(
     (dispatch) => { 
         return {
             onTodoClick: (id) => {
-                //alert(id + 'geklickt')
-                dispatch(Actions.spielsteinGeklickt(id))
+                dispatch(Actions.loadLevel(id))
             }
         }
     }
