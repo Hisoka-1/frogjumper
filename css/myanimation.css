@@ -90,3 +90,26 @@
     -ms-transform:  translate(0px,0px)  ;
   }
 }
+
+@keyframes rechts {
+  from { background-position:  0px -300px; }
+  to { background-position: -144px -300px; }
+}
+
+.frosch-leave {
+  opacity: 1;
+}
+
+.frosch-leave.frosch-leave-active {
+  opacity: 0.01;
+  transition: opacity 3000ms ease-in;
+}
+
+.frosch-appear {
+   opacity: 0.01;
+}
+
+.frosch-appear.frosch-appear-active {
+   opacity: 1;
+   transition: opacity 3000ms ease-in;
+}

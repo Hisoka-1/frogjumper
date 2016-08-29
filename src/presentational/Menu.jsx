@@ -20,10 +20,10 @@ const Menu = createClass({
             return (
                 <div className="TitelZeile">
                     
-                        <ReactCSSTransitionGroup transitionName="letter" 
+                        <ReactCSSTransitionGroup transitionName="frosch" 
                         transitionAppear={true} 
-                        transitionAppearTimeout={500} 
-                        transitionEnterTimeout={500} 
+                        transitionAppearTimeout={3000} 
+                        transitionEnterTimeout={3000} 
                         transitionLeaveTimeout = {500}>
                             {chars.map( (x,i) => {
                                     return <div 

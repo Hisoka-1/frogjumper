@@ -1,5 +1,5 @@
 import Level from '../entities/Level.es6';
-import levels from '../js/maps.json'
+import levels from '../js/maps.json';
 
 module.exports.spielsteinGeklickt = (position) => {
 	return {

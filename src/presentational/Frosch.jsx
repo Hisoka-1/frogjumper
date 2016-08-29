@@ -1,13 +1,22 @@
 import React, {createClass} from 'react';
 import {connect}  from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 
 const Frosch = createClass({
     render: function() {
-        return (<div className='Frosch'>
-                {this.props.position}
-            </div>);
+        var className = 'Frosch ' + 'rechts';
+        return (
+            <ReactCSSTransitionGroup 
+            transitionName="frosch" 
+            transitionEnterTimeout={3000} 
+            transitionLeaveTimeout={3000}>
+                <div className={className}>
+                    {this.props.position}
+                </div>
+            </ReactCSSTransitionGroup>
+        );
     },
 
 

@@ -48,16 +48,25 @@ body {
 }
 
 .SpielStein , .KeinSpielStein , .StartStein, .Frosch{
+    height:50px;
+    width:50px;
+}
+
+.SpielStein , .KeinSpielStein , .StartStein{
 	margin:25px;
-	height:50px;
-	width:50px;
 	display:inline-block;
 }
 
 .Frosch {
-	background-image: url("../src/sprites/Frosch.png");
+	background-image: url("../sprites/Frosch.png");
 	background-repeat: no-repeat;
-	position:relative;
+    transform: scale(1.8, 1.8);
+    bottom:10px;
+    position:relative;
+}
+
+.rechts {
+    animation: rechts 2s steps(3) infinite;
 }
 
 .letter-appear {
@@ -66,7 +75,25 @@ body {
 
 .letter-appear.letter-appear-active {
   opacity: 1;
-  transition: opacity .5s ease-in;
+  transition: opacity 500ms ease-in;
+}
+
+.frosch-leave {
+  opacity: 1;
+}
+
+.frosch-leave.frosch-leave-active {
+  opacity: 0.01;
+  transition: opacity 3000ms ease-in;
+}
+
+.frosch-appear {
+   opacity: 0.01;
+}
+
+.frosch-appear.frosch-appear-active {
+   opacity: 1;
+   transition: opacity 3000ms linear;
 }
 
 .Button {

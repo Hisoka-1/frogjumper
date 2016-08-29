@@ -2,17 +2,25 @@ import React, {createClass} from 'react'
 import {connect} from 'react-redux'
 import Actions from '../js/actions.es6'
 import Frosch from './Frosch.jsx'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const SpielStein= createClass({
 	render: function() {
 		const clickHandler = this.props.typ != " " ?()=> this.props.onTodoClick(this.props.position):()=>{};
-		var frosch = (x) => {return x=='s'?(<Frosch  />) : '';} ;
-		return (<div className= "SpielStein" 
+		var frosch = (x) => {return x=='s'?(<Frosch key='x' />) : '';} ;
+		return (
+        
+		<div className= "SpielStein" 
 		 style={this.props.style}
 		 onClick = {clickHandler}
 		 data-typ = {this.props.typ}
 		 ref = {(c) => this.ref = c}
-		 >{frosch(this.props.typ)}</div>);
+		 key = {this.props.position}
+		 >
+		 <ReactCSSTransitionGroup 
+            transitionName="letter" 
+            transitionEnterTimeout={3000} 
+            transitionLeaveTimeout={3000}>{frosch(this.props.typ)}</ReactCSSTransitionGroup></div>);
 	},
 	statics: {
 		getTyp: function(level, position){
