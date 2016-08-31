@@ -2,6 +2,7 @@ import React, {createClass} from 'react';
 import SpielZeile from './SpielZeile.jsx';
 import {connect}  from 'react-redux';
 import Menu from './Menu.jsx'
+import Frosch from './Frosch.jsx'
 
 
 const LevelComp = createClass({
@@ -16,6 +17,7 @@ const LevelComp = createClass({
 			return (
 			<div className="Level" >
 				{spielzeilen}
+				<Frosch></Frosch>
 			</div>
 			);
 		}else {

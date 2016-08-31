@@ -5,8 +5,8 @@ import Position from '../entities/Position.es6'
 
 let SpielZeile= createClass({
 	render: function() {
-		var spalte= 0;
-		var spielsteine= this.props.level.array[this.props.zeilenNr].map(stein => {
+		let spalte= 0;
+		const spielsteine= this.props.level.array[this.props.zeilenNr].map(stein => {
 			const position = new Position(this.props.zeilenNr, spalte);
 			spalte++;
 			return (<SpielStein typ = {stein} position={position} key = {spalte}/>);

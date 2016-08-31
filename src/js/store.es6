@@ -11,7 +11,6 @@ function gameLogic(state = intitalState, action) {
 		case 'spielsteinGeklickt':
 			return Object.assign({}, state, {
 				count:state.count+1,
-				spielSteinPositon : action.position,
 				level: GameEngine.handleMove(state.level, action.position)
 			});
 
@@ -24,6 +23,11 @@ function gameLogic(state = intitalState, action) {
 			return Object.assign({}, state, {
 				count: state.count+1,
 				level: action.level
+			});
+		case 'spielSteinGesetzt':
+			return Object.assign({}, state, {
+				count: state.count+1,
+				ref: action.ref
 			});
 		default:
 			return state;

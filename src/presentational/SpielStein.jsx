@@ -2,12 +2,10 @@ import React, {createClass} from 'react'
 import {connect} from 'react-redux'
 import Actions from '../js/actions.es6'
 import Frosch from './Frosch.jsx'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const SpielStein= createClass({
 	render: function() {
 		const clickHandler = this.props.typ != " " ?()=> this.props.onTodoClick(this.props.position):()=>{};
-		var frosch = (x) => {return x=='s'?(<Frosch key='x' />) : '';} ;
 		return (
         
 		<div className= "SpielStein" 
@@ -17,10 +15,9 @@ const SpielStein= createClass({
 		 ref = {(c) => this.ref = c}
 		 key = {this.props.position}
 		 >
-		 <ReactCSSTransitionGroup 
-            transitionName="letter" 
-            transitionEnterTimeout={3000} 
-            transitionLeaveTimeout={3000}>{frosch(this.props.typ)}</ReactCSSTransitionGroup></div>);
+		 	{false && this.props.typ == 's' && <Frosch key={this.props.typ}/> }
+		 </div>
+		 );
 	},
 	statics: {
 		getTyp: function(level, position){
@@ -36,15 +33,16 @@ const SpielStein= createClass({
 		}
 	},
 	componentDidMount: function () {
-		if(this.props.typ == 's')
-			console.log(this.ref)
+		if(this.props.typ == 's'){
+			this.props.onSpielSteinGesetzt(this.ref)
+		}
 	},
-	componentDidUpdate: function() {
-		//var spielposition = document.querySelector('[data-typ=s]');
-		//console.log (spielposition.getBoundingClientRect() + '');
-		if(this.props.typ == 's')
-			console.log(this.ref)
+	componentWillUpdate: function(nextProp, nextState){
+		if(!this.props.spielStein.equals(nextProp.spielStein))
+			if(nextProp.spielStein.equals(this.props.position) )
+				this.props.onSpielSteinGesetzt(this.ref)
 	}
+
 });
 
 const SpielSteinMitState = connect(
@@ -52,13 +50,17 @@ const SpielSteinMitState = connect(
 		var typ = SpielStein.getTyp(state.level, ownProps.position);
 		return {
 		typ:typ,
-		style: {backgroundColor:SpielStein.getBackgroundColor(typ)}
+		style: {backgroundColor:SpielStein.getBackgroundColor(typ)},
+		spielStein: state.level.getSpielSteinPosition()
 	}} ,
 	(dispatch) => {return {
 		onTodoClick: (id) => {
       		dispatch(Actions.spielsteinGeklickt(id))
-    }
+    	},
+    	onSpielSteinGesetzt: (ref) => {
+    		dispatch(Actions.spielSteinGesetzt(ref))}
 	}}
 	)(SpielStein);
+
 
 export {SpielSteinMitState as default};
