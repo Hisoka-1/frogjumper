@@ -55,6 +55,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "react-motion": "^0.4.4"
+    "react-motion": "^0.4.4",
+    "velocity-animate": "^1.2.3",
+    "velocity-react": "^1.1.5"
   }
 }

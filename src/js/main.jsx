@@ -10,7 +10,6 @@ import levels from './maps.json'
 import actions from './actions.es6'
 
 import Level from '../presentational/Level.jsx'
-import Menu from '../presentational/Menu.jsx'
 
 const urlParam = location.search.slice(1);
 

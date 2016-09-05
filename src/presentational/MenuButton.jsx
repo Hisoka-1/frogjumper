@@ -17,7 +17,9 @@ const Button = createClass({
                         <a 
                             className="Button" 
                             style= {{display:'block'}}
-                            onClick = {() => this.props.onTodoClick(this.props.level)}
+                            onClick = {() => {
+                                    !this.props.gewonnen && this.props.onTodoClick(this.props.level)   
+                                }}
                         >{this.props.text}</a>    
                     </div>
                     </ReactCSSTransitionGroup>
@@ -28,7 +30,7 @@ const Button = createClass({
 
 const ButtonMitState = connect(
     (state) => {return {
-        
+        gewonnen : state.gewonnen
     }},
     
     (dispatch) => { 

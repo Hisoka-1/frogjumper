@@ -1,37 +1,36 @@
 import React, {createClass} from 'react';
 import {connect}  from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {Motion, TransitionMotion, spring} from 'react-motion';
+import 'velocity-animate'
+import 'velocity-animate/velocity.ui'
+import {VelocityComponent, velocityHelpers} from 'velocity-react'
+import FroschKoerper from './FroschKoerper.jsx'
 
 
 
 class Frosch extends React.Component{
     render() {
-        let className = 'Frosch ' + 'rechts';
-        let rect = {left:0, top:0}
-        if(!!this.props.steinRef){
-            rect = this.props.steinRef.getBoundingClientRect();       
+        
+        let rect = {}
+        let figur = null;
+        if(!this.altSteinRef){
+            this.altSteinRef = rect
         }
-        let style = {
-            position:'absolute',
-            left:rect.left,
-            top:rect.top + 25
-        };
+        if(!!this.props.steinRef){
+            rect = this.props.steinRef.getBoundingClientRect(); 
+            figur = <FroschKoerper rect={rect} ></FroschKoerper>
+        }
+
         return (
-            <div className={className} data-pos = 'x' style = {style}></div>
+            figur
         );
     }
     componentWillUpdate(nextProp, nextState){
-        if(!nextProp.position.equals(this.props.position)){
-
-            console.log(nextProp);
-            console.log(nextProp.steinRef);    
+        if(this.props.steinRef !== undefined){
+            this.altSteinRef = this.props.steinRef.getBoundingClientRect()            
         }
-        
     }
-    componentWillMount(){
-        console.log(this.props.steinRef)
-        console.log('componentWillMount');
+    componentDidMount(){
+        
     }
 };
 

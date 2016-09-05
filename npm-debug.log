@@ -1,0 +1,122 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\programmessd\\node.exe',
+1 verbose cli   'c:\\programmessd\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'velocity-animate-shim' ]
+2 info using npm@2.14.12
+3 info using node@v4.3.1
+4 verbose install initial load of c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\package.json
+5 warn package.json game@0.1.0 No license field.
+6 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\babel-polyfill\package.json
+7 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\babel-preset-es2015\package.json
+8 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\babel-preset-react\package.json
+9 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\babel-register\package.json
+10 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\babelify\package.json
+11 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\chai\package.json
+12 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt\package.json
+13 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-babel\package.json
+14 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-browserify\package.json
+15 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-concurrent\package.json
+16 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-contrib-connect\package.json
+17 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-contrib-jshint\package.json
+18 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-contrib-watch\package.json
+19 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-eslint\package.json
+20 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-mocha\package.json
+21 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-reactify\package.json
+22 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\grunt-simple-mocha\package.json
+23 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\load-grunt-tasks\package.json
+24 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\mocha\package.json
+25 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react\package.json
+26 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react-addons-css-transition-group\package.json
+27 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react-addons-transition-group\package.json
+28 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react-dom\package.json
+29 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react-motion\package.json
+30 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\react-redux\package.json
+31 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\reactify\package.json
+32 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\redux\package.json
+33 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\velocity-animate\package.json
+34 verbose installManyTop reading scoped package data from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\node_modules\velocity-react\package.json
+35 info package.json grunt-browserify@5.0.0 No license field.
+36 info package.json grunt@0.4.5 No license field.
+37 info package.json grunt-mocha@1.0.2 No license field.
+38 info package.json grunt-simple-mocha@0.4.1 No license field.
+39 verbose readDependencies loading dependencies from c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper\package.json
+40 silly cache add args [ 'velocity-animate-shim', null ]
+41 verbose cache add spec velocity-animate-shim
+42 silly cache add parsed spec Result {
+42 silly cache add   raw: 'velocity-animate-shim',
+42 silly cache add   scope: null,
+42 silly cache add   name: 'velocity-animate-shim',
+42 silly cache add   rawSpec: '',
+42 silly cache add   spec: 'latest',
+42 silly cache add   type: 'tag' }
+43 silly addNamed velocity-animate-shim@latest
+44 verbose addNamed "latest" is being treated as a dist-tag for velocity-animate-shim
+45 info addNameTag [ 'velocity-animate-shim', 'latest' ]
+46 silly mapToRegistry name velocity-animate-shim
+47 silly mapToRegistry using default registry
+48 silly mapToRegistry registry https://registry.npmjs.org/
+49 silly mapToRegistry uri https://registry.npmjs.org/velocity-animate-shim
+50 verbose addNameTag registry:https://registry.npmjs.org/velocity-animate-shim not in flight; fetching
+51 verbose request uri https://registry.npmjs.org/velocity-animate-shim
+52 verbose request no auth needed
+53 info attempt registry request try #1 at 16:21:07
+54 verbose request id e3af567051b97486
+55 http request GET https://registry.npmjs.org/velocity-animate-shim
+56 http 404 https://registry.npmjs.org/velocity-animate-shim
+57 verbose headers { 'content-type': 'application/json',
+57 verbose headers   'cache-control': 'max-age=0',
+57 verbose headers   'content-length': '2',
+57 verbose headers   'accept-ranges': 'bytes',
+57 verbose headers   date: 'Sun, 04 Sep 2016 14:21:02 GMT',
+57 verbose headers   via: '1.1 varnish',
+57 verbose headers   age: '0',
+57 verbose headers   connection: 'keep-alive',
+57 verbose headers   'x-served-by': 'cache-fra1232-FRA',
+57 verbose headers   'x-cache': 'MISS',
+57 verbose headers   'x-cache-hits': '0',
+57 verbose headers   'x-timer': 'S1472998861.949582,VS0,VE208',
+57 verbose headers   vary: 'Accept-Encoding' }
+58 silly get cb [ 404,
+58 silly get   { 'content-type': 'application/json',
+58 silly get     'cache-control': 'max-age=0',
+58 silly get     'content-length': '2',
+58 silly get     'accept-ranges': 'bytes',
+58 silly get     date: 'Sun, 04 Sep 2016 14:21:02 GMT',
+58 silly get     via: '1.1 varnish',
+58 silly get     age: '0',
+58 silly get     connection: 'keep-alive',
+58 silly get     'x-served-by': 'cache-fra1232-FRA',
+58 silly get     'x-cache': 'MISS',
+58 silly get     'x-cache-hits': '0',
+58 silly get     'x-timer': 'S1472998861.949582,VS0,VE208',
+58 silly get     vary: 'Accept-Encoding' } ]
+59 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/velocity-animate-shim
+59 verbose stack     at makeError (c:\programmessd\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+59 verbose stack     at CachingRegistryClient.<anonymous> (c:\programmessd\node_modules\npm\node_modules\npm-registry-client\lib\request.js:242:14)
+59 verbose stack     at Request._callback (c:\programmessd\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+59 verbose stack     at Request.self.callback (c:\programmessd\node_modules\npm\node_modules\request\request.js:198:22)
+59 verbose stack     at emitTwo (events.js:87:13)
+59 verbose stack     at Request.emit (events.js:172:7)
+59 verbose stack     at Request.<anonymous> (c:\programmessd\node_modules\npm\node_modules\request\request.js:1082:10)
+59 verbose stack     at emitOne (events.js:82:20)
+59 verbose stack     at Request.emit (events.js:169:7)
+59 verbose stack     at IncomingMessage.<anonymous> (c:\programmessd\node_modules\npm\node_modules\request\request.js:1009:12)
+60 verbose statusCode 404
+61 verbose pkgid velocity-animate-shim
+62 verbose cwd c:\uni\13semester\frogjumper\workspace\justGrunt\frogjumper
+63 error Windows_NT 10.0.10586
+64 error argv "c:\\programmessd\\node.exe" "c:\\programmessd\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save" "velocity-animate-shim"
+65 error node v4.3.1
+66 error npm  v2.14.12
+67 error code E404
+68 error 404 Registry returned 404 for GET on https://registry.npmjs.org/velocity-animate-shim
+68 error 404
+68 error 404 'velocity-animate-shim' is not in the npm registry.
+68 error 404 You should bug the author to publish it (or use the name yourself!)
+68 error 404 It was specified as a dependency of 'game'
+68 error 404
+68 error 404 Note that you can also install from a
+68 error 404 tarball, folder, http url, or git url.
+69 verbose exit [ 1, true ]

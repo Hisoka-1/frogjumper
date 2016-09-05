@@ -47,7 +47,7 @@ body {
 
 }
 
-.SpielStein , .KeinSpielStein , .StartStein, .Frosch{
+.SpielStein , .KeinSpielStein , .StartStein, .FroschKoerper{
     height:50px;
     width:50px;
 }
@@ -57,12 +57,13 @@ body {
 	display:inline-block;
 }
 
-.Frosch {
+.FroschKoerper {
 	background-image: url("../sprites/Frosch.png");
 	background-repeat: no-repeat;
-    transform: scale(1.8, 1.8);
-    bottom:10px;
-    position:relative;
+  transform: scale(1.8, 1.8);
+  bottom:10px;
+  position:absolute;
+  opacity:0;
 }
 
 .rechts {

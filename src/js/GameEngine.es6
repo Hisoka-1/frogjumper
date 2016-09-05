@@ -20,6 +20,14 @@ export function handleMove(level, neuePosition){
 	}
 
 	return level;
+}
 
-	
+export function isGewonnen(level){
+	for( let zeile of level.array){
+		for( let stein of zeile){
+			if(stein == 'x')
+				return false;
+		}	
+	}
+	return true;
 }

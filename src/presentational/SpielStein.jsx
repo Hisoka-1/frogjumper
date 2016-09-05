@@ -12,7 +12,7 @@ const SpielStein= createClass({
 		 style={this.props.style}
 		 onClick = {clickHandler}
 		 data-typ = {this.props.typ}
-		 ref = {(c) => this.ref = c}
+		 ref = "SpielStein"
 		 key = {this.props.position}
 		 >
 		 	{false && this.props.typ == 's' && <Frosch key={this.props.typ}/> }
@@ -34,13 +34,13 @@ const SpielStein= createClass({
 	},
 	componentDidMount: function () {
 		if(this.props.typ == 's'){
-			this.props.onSpielSteinGesetzt(this.ref)
+			this.props.onSpielSteinGesetzt(this.refs.SpielStein)
 		}
 	},
 	componentWillUpdate: function(nextProp, nextState){
 		if(!this.props.spielStein.equals(nextProp.spielStein))
 			if(nextProp.spielStein.equals(this.props.position) )
-				this.props.onSpielSteinGesetzt(this.ref)
+				this.props.onSpielSteinGesetzt(this.refs.SpielStein)
 	}
 
 });

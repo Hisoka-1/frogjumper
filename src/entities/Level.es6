@@ -6,7 +6,7 @@ export default class Level {
 		if (this.array !== undefined){
 			this.position = this.getSpielSteinPosition();
 		}
-		console.log(`position set: ${this.position}`);
+		//console.log(`position set: ${this.position}`);
 	}
 	toString(){
 		return this.array.toString();
