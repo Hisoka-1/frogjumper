@@ -39,10 +39,6 @@ body {
     position: relative;
 }
 
-.SpielStein, .StartStein {
-	border-radius:50%;
-}
-
 .KeinSpielStein {
 
 }
@@ -55,6 +51,11 @@ body {
 .SpielStein , .KeinSpielStein , .StartStein{
 	margin:25px;
 	display:inline-block;
+}
+
+.Spielstein[data-typ="x"], .Spielstein[data-typ="s"]{
+  background-image: url("../sprites/lilypad.png");
+  background-size: 100% 100%;
 }
 
 .FroschKoerper {

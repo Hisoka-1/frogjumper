@@ -2,20 +2,31 @@ import React, {createClass} from 'react'
 import {connect} from 'react-redux'
 import Actions from '../js/actions.es6'
 import Frosch from './Frosch.jsx'
+import 'velocity-animate'
+import 'velocity-animate/velocity.ui'
 
 const SpielStein= createClass({
 	render: function() {
 		const clickHandler = this.props.typ != " " ?()=> this.props.onTodoClick(this.props.position):()=>{};
+		let typ = SpielStein.getTyp(this.props.level, this.props.position);
+		let url = SpielStein.getBackgroundColor(typ);
+
+		let style = {
+			width:50,
+		 	height:50,
+		 	backgroundImage: `url("'${url}'")`,
+  			backgroundSize: '100% 100%',
+  			display:'inline-block',
+  			margin:25
+  		};
+
 		return (
-        
-		<div className= "SpielStein" 
-		 style={this.props.style}
+		<div 
+		 style={style}
 		 onClick = {clickHandler}
-		 data-typ = {this.props.typ}
 		 ref = "SpielStein"
 		 key = {this.props.position}
 		 >
-		 	{false && this.props.typ == 's' && <Frosch key={this.props.typ}/> }
 		 </div>
 		 );
 	},
@@ -25,9 +36,9 @@ const SpielStein= createClass({
 		},
 		getBackgroundColor(typ){
 			switch (typ) {
-				case "x": return 'white';
+				case "x": return "../sprites/lilypad.png";
 				case " ": return '';
-				case "s": return 'black';
+				case "s": return "../sprites/lilypad.png";
 				default : return '';
 			}
 		}
@@ -41,16 +52,21 @@ const SpielStein= createClass({
 		if(!this.props.spielStein.equals(nextProp.spielStein))
 			if(nextProp.spielStein.equals(this.props.position) )
 				this.props.onSpielSteinGesetzt(this.refs.SpielStein)
+		if(this.props.typ != nextProp.typ){
+			if(nextProp.typ == ' '){
+				Velocity(this.refs.SpielStein, 'transition.slideDownOut', {display:'inline-block'});
+			}else if(nextProp.typ == 'x' || (this.props.typ == ' ' && nextProp.typ == 's')) {
+				Velocity(this.refs.SpielStein, 'transition.bounceIn', {display:'inline-block'});
+			}
+		}
 	}
 
 });
 
 const SpielSteinMitState = connect(
 	(state, ownProps)=>{
-		var typ = SpielStein.getTyp(state.level, ownProps.position);
 		return {
-		typ:typ,
-		style: {backgroundColor:SpielStein.getBackgroundColor(typ)},
+		level: state.level,
 		spielStein: state.level.getSpielSteinPosition()
 	}} ,
 	(dispatch) => {return {

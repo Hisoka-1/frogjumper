@@ -12,14 +12,13 @@ function gameLogic(state = intitalState, action) {
 	switch(action.type){
 
 		case 'spielsteinGeklickt':
-			let newLevel = GameEngine.handleMove(state.level, action.position)
+			let newLevel = GameEngine.handleMove(state.level, action.position);
 			return Object.assign({}, state, {
 				count:state.count+1,
 				level: newLevel,
 				gewonnen: GameEngine.isGewonnen(newLevel),
 			});
 		case 'loadLevel':
-			console.log(action)
 			return Object.assign({}, state, {
 				count: state.count+1,
 				level: action.level,
