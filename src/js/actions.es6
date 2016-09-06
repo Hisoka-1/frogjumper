@@ -17,7 +17,6 @@ module.exports.loadLevel = (levelNr) => {
 };
 
 module.exports.resetButtonGeklickt = () => {
-	console.log('reset')
 	return {
 		type: 'resetButtonGeklickt'
 	};

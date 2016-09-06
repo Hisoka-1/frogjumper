@@ -33,7 +33,6 @@ function gameLogic(state = intitalState, action) {
 				ref: action.ref,
 			});
 		case 'resetButtonGeklickt':
-			console.log('reset2')
 			return Object.assign({}, intitalState, {
 				count: state.count+1,
 			});

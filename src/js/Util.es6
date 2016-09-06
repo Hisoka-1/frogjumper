@@ -9,9 +9,9 @@ export function params(){
 };
 
 export function getText(prop){
-    let language = params()['lang']
+    let language = params()['lang'];
     if(params()['lang'] == undefined){
-        language = params()['german']
+        language = 'german';
     }
     return text[language][prop];
 };
