@@ -20,20 +20,20 @@ class FroschKoerper extends React.Component{
         Velocity(this.refs.FroschKoerper, 'transition.slideLeftBigIn');
     }
 
-    componentWillUpdate(nextProp, nextState){
-        console.log(nextProp)
+    componentDidUpdate(oldProp, oldState){
+        console.log(this.props)
         Velocity(this.refs.FroschKoerper, 
-            {top:nextProp.rect.top-17, 
-             left:nextProp.rect.left}, 
+            {top:this.props.rect.top-17, 
+             left:this.props.rect.left}, 
             {duration:500, queue:false});
-        let horizontalMove = this.props.rect.left != nextProp.rect.left;
-        let verticalMove = this.props.rect.top != nextProp.rect.top;
-        if(horizontalMove){
-            Velocity(this.refs.FroschKoerper, {top:nextProp.rect.top-50}, {duration:250, queue:false});
-            Velocity(this.refs.FroschKoerper, {top:nextProp.rect.top-17}, {delay:250, duration:250, queue:false});            
-        }else {
-            Velocity(this.refs.FroschKoerper, {left:nextProp.rect.left-17}, {duration:250, queue:false});
-            Velocity(this.refs.FroschKoerper, {left:nextProp.rect.left}, {delay:250, duration:250, queue:false});
+        let horizontalMove = this.props.rect.left != this.props.rect.left;
+        let verticalMove = this.props.rect.top != this.props.rect.top;
+        if(!verticalMove){
+            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-50}, {duration:200, queue:false});
+            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-17}, {delay:200, duration:250, queue:false});            
+        }else if(!horizontalMove){
+            Velocity(this.refs.FroschKoerper, {left:this.props.rect.left-17}, {duration:200, queue:false});
+            Velocity(this.refs.FroschKoerper, {left:this.props.rect.left}, {delay:200, duration:250, queue:false});
         }
         
     }
@@ -47,6 +47,7 @@ class FroschKoerper extends React.Component{
 
 const FroschKoerperMitState = connect(
     (state) => {
+        console.log(state.level)
         return {
         steinRef: state.ref.getBoundingClientRect(),
         position: state.level.getSpielSteinPosition(),

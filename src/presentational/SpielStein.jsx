@@ -14,7 +14,7 @@ const SpielStein= createClass({
 		let style = {
 			width:50,
 		 	height:50,
-		 	backgroundImage: `url("'${url}'")`,
+		 	backgroundImage: `url('${url}')`,
   			backgroundSize: '100% 100%',
   			display:'inline-block',
   			margin:25
@@ -58,6 +58,11 @@ const SpielStein= createClass({
 			}else if(nextProp.typ == 'x' || (this.props.typ == ' ' && nextProp.typ == 's')) {
 				Velocity(this.refs.SpielStein, 'transition.bounceIn', {display:'inline-block'});
 			}
+		}
+	},
+	componentDidUpdate: function(oldProps, oldState){
+		if((this.props.typ == 's' && oldProps.typ == ' ')){
+			this.props.onSpielSteinGesetzt(this.refs.SpielStein)
 		}
 	}
 
