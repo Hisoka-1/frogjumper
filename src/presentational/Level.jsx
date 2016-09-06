@@ -7,6 +7,8 @@ import Actions from '../js/actions.es6';
 import MenuButton from './MenuButton.jsx'
 import GewonnenAnimation from './GewonnenAnimation.jsx'
 import Splash from './Splash.jsx'
+import {getText} from '../js/Util.es6'
+
 
 
 
@@ -30,7 +32,8 @@ const LevelComp = createClass({
 				<Splash visible={this.props.gewonnen} text="Gewonnen"></Splash>
 				{spielzeilen}
 				<Frosch></Frosch>
-				<MenuButton text= "reset" level = {this.props.levelNr}></MenuButton>
+				<MenuButton text= {getText("reset")} level = {this.props.levelNr}></MenuButton>
+				<MenuButton text= {getText("menu")} ></MenuButton>
 				
 			</div>
 			);

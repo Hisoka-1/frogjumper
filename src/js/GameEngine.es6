@@ -23,6 +23,9 @@ export function handleMove(level, neuePosition){
 }
 
 export function isGewonnen(level){
+	if(level.array == undefined){
+		return false;
+	}
 	for( let zeile of level.array){
 		for( let stein of zeile){
 			if(stein == 'x')

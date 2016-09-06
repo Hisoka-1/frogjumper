@@ -6,26 +6,40 @@ import {VelocityComponent, velocityHelpers} from 'velocity-react'
 
 
 class FroschKoerper extends React.Component{
-    render() {
-        return (<div className ="FroschKoerper rechts" ref="FroschKoerper" ></div>);
+    render() {        
+        return (<div className ="FroschKoerper" ref="FroschKoerper" ></div>);
     }
 
     componentDidMount(){
-        console.log(this.props)
+
         Velocity(this.refs.FroschKoerper, { 
             top:this.props.steinRef.top-17,
             left:this.props.steinRef.left
         });
         Velocity(this.refs.FroschKoerper, {scaleX: 1.8, scaleY: 1.8});
         Velocity(this.refs.FroschKoerper, 'transition.slideLeftBigIn');
+        Velocity(this.refs.FroschKoerper,
+            {backgroundPositionX:[-96,0], backgroundPositionY:[-300, -300]},{easing:[2], duration:2000, loop:true });
+    }
+
+    componentWillUpdate(nextProp, nextState){
+
     }
 
     componentDidUpdate(oldProp, oldState){
-        console.log(this.props)
+        Velocity(this.refs.FroschKoerper,"stop", true);
+
+        let coord = calculate(this.props, oldProp)
+        
+        Velocity(this.refs.FroschKoerper,
+            {backgroundPositionX:coord.bx, backgroundPositionY:coord.by},{easing:[1], duration:500});
+
         Velocity(this.refs.FroschKoerper, 
             {top:this.props.rect.top-17, 
              left:this.props.rect.left}, 
             {duration:500, queue:false});
+        
+
         let horizontalMove = this.props.rect.left != this.props.rect.left;
         let verticalMove = this.props.rect.top != this.props.rect.top;
         if(!verticalMove){
@@ -34,6 +48,16 @@ class FroschKoerper extends React.Component{
         }else if(!horizontalMove){
             Velocity(this.refs.FroschKoerper, {left:this.props.rect.left-17}, {duration:200, queue:false});
             Velocity(this.refs.FroschKoerper, {left:this.props.rect.left}, {delay:200, duration:250, queue:false});
+        }
+
+        
+        console.log(this.props.frisch)
+        if(this.props.frisch){
+            Velocity(this.refs.FroschKoerper,
+            {backgroundPositionX:[-96,0], backgroundPositionY:[-300,-300]},{easing:[2], duration:2000, loop:true });            
+        }else {
+            Velocity(this.refs.FroschKoerper,
+            {backgroundPositionX:[-96,0], backgroundPositionY:coord.lY},{easing:[2], duration:2000, loop:true });    
         }
         
     }
@@ -47,13 +71,24 @@ class FroschKoerper extends React.Component{
 
 const FroschKoerperMitState = connect(
     (state) => {
-        console.log(state.level)
         return {
         steinRef: state.ref.getBoundingClientRect(),
         position: state.level.getSpielSteinPosition(),
-        
+        frisch: state.frisch
     }},
     {}
     )(FroschKoerper);
+
+let calculate = (neu, alt)=>{
+    if(neu.position.zeile < alt.position.zeile) //oben
+        return {bx:[0,-96], by:[-144,-144], lY:[-340,-340]}
+    if(neu.position.zeile > alt.position.zeile) //unten
+        return {bx:[0,-96], by:[0,0], lY: [-195, -195]}
+    if(neu.position.spalte < alt.position.spalte) //links
+        return {bx:[0,-96], by:[-48,-48], lY: [-252, -252]}
+    if(neu.position.spalte > alt.position.spalte) //rechts
+        return {bx:[0,-96], by:[-96,-96], lY: [-300, -300]}
+    return {bx:[0,-96], by:[-300,-300]}
+}
 
 export {FroschKoerperMitState as default};

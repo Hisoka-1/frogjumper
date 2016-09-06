@@ -1,0 +1,18 @@
+{
+    "german":{
+        "title":"FroJu",
+        "easy":"Leicht",
+        "medium":"Mittel",
+        "hard":"Schwer",
+        "reset":"Neustarten",
+        "menu":"Menü"
+    },
+    "english":{
+        "title":"FroJu",
+        "easy":"easy",
+        "medium":"medium",
+        "hard":"hard",
+        "reset":"reset",
+        "menu":"Menu"
+    }
+}

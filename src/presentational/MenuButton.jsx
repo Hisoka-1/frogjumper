@@ -1,6 +1,5 @@
 import React, {createClass} from 'react';
 import {connect}  from 'react-redux';
-import text from './text.json';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Actions from '../js/actions.es6'
 
@@ -18,7 +17,7 @@ const Button = createClass({
                             className="Button" 
                             style= {{display:'block'}}
                             onClick = {() => {
-                                    !this.props.gewonnen && this.props.onTodoClick(this.props.level)   
+                                    !this.props.gewonnen  && this.props.onTodoClick(this.props.level) 
                                 }}
                         >{this.props.text}</a>    
                     </div>
@@ -36,7 +35,12 @@ const ButtonMitState = connect(
     (dispatch) => { 
         return {
             onTodoClick: (id) => {
-                dispatch(Actions.loadLevel(id))
+                if(id == undefined){
+                    dispatch(Actions.resetButtonGeklickt());
+                }else {
+                    dispatch(Actions.loadLevel(id));
+                }
+                
             }
         }
     }
