@@ -4,8 +4,10 @@ import 'velocity-animate'
 import 'velocity-animate/velocity.ui'
 import {VelocityComponent, velocityHelpers} from 'velocity-react'
 
+const jump = new Audio('./sound/jump.mp3');
 
 class FroschKoerper extends React.Component{
+
     render() {        
         return (<div className ="FroschKoerper" ref="FroschKoerper" ></div>);
     }
@@ -43,11 +45,11 @@ class FroschKoerper extends React.Component{
         let horizontalMove = this.props.rect.left != this.props.rect.left;
         let verticalMove = this.props.rect.top != this.props.rect.top;
         if(!verticalMove){
-            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-50}, {duration:200, queue:false});
-            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-17}, {delay:200, duration:250, queue:false});            
+            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-75}, {duration:200, queue:false});
+            Velocity(this.refs.FroschKoerper, {top:this.props.rect.top-17}, {delay:210, duration:250, queue:false});            
         }else if(!horizontalMove){
             Velocity(this.refs.FroschKoerper, {left:this.props.rect.left-17}, {duration:200, queue:false});
-            Velocity(this.refs.FroschKoerper, {left:this.props.rect.left}, {delay:200, duration:250, queue:false});
+            Velocity(this.refs.FroschKoerper, {left:this.props.rect.left}, {delay:210, duration:250, queue:false});
         }
 
         
@@ -59,6 +61,9 @@ class FroschKoerper extends React.Component{
             Velocity(this.refs.FroschKoerper,
             {backgroundPositionX:[-96,0], backgroundPositionY:coord.lY},{easing:[2], duration:2000, loop:true });    
         }
+        
+        jump.play();
+        setTimeout( ()=> { jump.pause(); jump.currentTime = 0;}, 700);
         
     }
 
